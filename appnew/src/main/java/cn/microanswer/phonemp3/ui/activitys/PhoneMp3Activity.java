@@ -144,11 +144,14 @@ public class PhoneMp3Activity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // 添加测试环境标记。
         TextView textView = findViewById(R.id.textView);
         if (BuildConfig.isDev) {
             textView.setVisibility(View.VISIBLE);
             textView.setText(String.format("%s %s", BuildConfig.desc, BuildConfig.VERSION_NAME));
         }
+
         // 下面这个判断要注意：
         // 在程序从未被打开过，然后进入程序时，savedInstanceState肯定是null的，这是就显示按App的流程，先显示
         // logo 界面。如果程序被打开过，然后又被关了，但是短时间内又被打开了，这时候的 savedInstanceState
