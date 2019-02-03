@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="LetterView">
+    <attr name="text_size" format="dimension" /><!-- 文本大小 -->
+    <attr name="text_color" format="color" /><!-- 文本颜色 -->
+    <attr name="text_current_color" format="color" /><!-- 当前选中文本颜色 -->
+    <attr name="under_line" format="boolean" /> <!-- 是否下划线 -->
+    <attr name="hint_text_size" format="dimension" /><!-- 提示文本大小 -->
+    <attr name="hint_text_color" format="color" /><!-- 提示文本颜色 -->
+    <attr name="hint_background" format="color|reference" /><!-- 提示背景 -->
+  </declare-styleable>
+
+  <declare-styleable name="DownloadProgressButton">
+    <attr name="progress_btn_radius" format="dimension" />
+    <attr name="progress_btn_background_color" format="color" />
+    <attr name="progress_btn_background_second_color" format="color" />
+    <attr name="progress_btn_text_color" format="color" />
+    <attr name="progress_btn_text_cover_color" format="color" />
+    <attr name="progress_btn_border_width" format="dimension" />
+    <attr name="progress_btn_ball_style" format="enum">
+      <enum name="STYLE_BALL_PULSE" value="1" />
+      <enum name="STYLE_BALL_JUMP" value="2" />
+    </attr>
+  </declare-styleable>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 侧滑菜单的顶部布局 -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/navigationHeadHeight"
+    android:tag="@string/mtheme_background"
+    android:background="@drawable/background_navigation_head">
+  <ImageView
+      android:contentDescription="@string/navigationHeadBackground"
+      android:id="@+id/imageViewNavigationBackground"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
+
+  <TextView
+      android:layout_above="@+id/textViewNoPlayingMusic"
+      android:layout_width="wrap_content"
+      android:text="@string/app_name"
+      android:textSize="20sp"
+      android:textColor="@color/navigationHeadTextColor"
+      android:layout_marginLeft="20dp"
+      android:layout_height="wrap_content"/>
+  <TextView
+      android:layout_marginLeft="20dp"
+      android:layout_marginBottom="20dp"
+      android:id="@+id/textViewNoPlayingMusic"
+      android:layout_width="wrap_content"
+      android:textColor="@color/navigationHeadTextColor"
+      android:layout_alignParentBottom="true"
+      android:text="@string/noPlayingMusic"
+      android:layout_height="wrap_content"/>
+
+</RelativeLayout>

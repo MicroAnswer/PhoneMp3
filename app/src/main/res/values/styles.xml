@@ -1,0 +1,46 @@
+<resources>
+
+  <!-- Base application theme. -->
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="windowNoTitle">true</item>
+    <item name="windowActionBar">false</item>
+  </style>
+
+  <style name="app_style" parent="AppTheme">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="android:textColorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimary</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
+
+  <!-- 全屏的activity_style -->
+  <style name="activity_style_fullscreen" parent="app_style">
+    <item name="android:windowFullscreen">true</item>
+  </style>
+
+  <style name="baseDialogStyle" parent="app_style">
+    <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+  </style>
+
+  <style name="popmenu_anim" parent="Base.Animation.AppCompat.Dialog">
+    <item name="android:windowEnterAnimation">@anim/popmenuin</item>
+    <item name="android:windowExitAnimation">@anim/fadeout</item>
+  </style>
+
+  <style name="musicitemmenudialog_anim" parent="Base.Animation.AppCompat.Dialog">
+    <item name="android:windowEnterAnimation">@anim/musicitemmenudialogin</item>
+    <item name="android:windowExitAnimation">@anim/musicitemmenudialogout</item>
+  </style>
+
+  <style name="basedialog_anim" parent="Base.Animation.AppCompat.Dialog">
+    <item name="android:windowEnterAnimation">@anim/base_dialog_in</item>
+    <item name="android:windowExitAnimation">@anim/base_dialog_out</item>
+  </style>
+
+  <style name="toolbarstyle">
+    <item name="colorControlNormal">#ffffff</item>
+    <item name="titleTextColor">#ffffff</item>
+    <item name="subtitleTextColor">#ffffff</item>
+  </style>
+</resources>

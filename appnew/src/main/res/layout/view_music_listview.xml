@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <!-- 放置加载View的容器 -->
+    <LinearLayout
+        android:id="@+id/linearLayoutLoadingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        android:orientation="vertical"/>
+
+    <!-- 放置数据为空的view的容器 -->
+    <LinearLayout
+        android:id="@+id/linearLayoutEmptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        android:orientation="vertical"/>
+
+    <!-- 数据容器 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMusics"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</merge>

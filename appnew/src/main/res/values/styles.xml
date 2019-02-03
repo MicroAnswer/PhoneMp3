@@ -1,0 +1,51 @@
+<resources>
+
+    <style name="cpv_ColorPickerViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">315dp</item>
+    </style>
+
+
+    <!-- Base application theme. -->
+    <style name="BaseTheme" parent="Theme.MaterialComponents.Light.NoActionBar"/>
+
+    <style name="phonemp3Theme" parent="BaseTheme">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fitsSystemWindows">false</item>
+
+        <!-- 默认按钮样式 -->
+        <!--<item name="android:buttonStyle">@style/myButtonStyle</item>-->
+
+        <!-- 状态栏颜色 -->
+        <item name="actionBarWidgetTheme">@null</item>
+        <item name="toolbarStyle">@style/toolbarStyle</item>
+        <item name="toolbarNavigationButtonStyle">@style/mToolbarNavigationButtonStyle</item>
+    </style>
+
+    <!-- 导航栏样式 -->
+    <style name="toolbarStyle" parent="Widget.MaterialComponents.Toolbar">
+        <item name="titleTextColor">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <!-- 状态栏返回按钮样式，既导航栏按钮样式。 -->
+    <style name="mToolbarNavigationButtonStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="tint">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <style name="playBarStyle" parent="Widget.AppCompat.SeekBar">
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:layout_marginLeft">6dp</item>
+        <item name="android:layout_marginRight">6dp</item>
+        <item name="android:splitTrack">false</item>
+        <item name="android:progressDrawable">@drawable/play_seek_bar_background</item>
+        <item name="android:thumb">@drawable/play_seek_bar_thumb</item>
+    </style>
+</resources>

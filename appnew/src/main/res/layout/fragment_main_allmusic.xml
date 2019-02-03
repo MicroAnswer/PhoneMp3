@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:tag="@string/mtheme_background"
+    app:ignoreBoottom="true"
+    app:boottomColor="?attr/colorPrimary"
+    app:leftColor="?attr/colorPrimary"
+    app:rightColor="?attr/colorPrimary"
+    app:topColor="?attr/colorPrimary">
+
+  <androidx.appcompat.widget.Toolbar
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/colorPrimary"
+      android:tag="@string/mtheme_background"
+      app:title="@string/allmusic"/>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:gravity="center"
+      android:orientation="vertical">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:tag="@string/mtheme_background"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="@android:color/white"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"/>
+
+  </LinearLayout>
+
+</cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout>

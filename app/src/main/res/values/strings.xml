@@ -1,0 +1,146 @@
+<resources>
+
+  <!-- 本应用的名称 -->
+  <string name="app_name">音乐怎么了</string>
+
+  <!-- 本应用的包名 -->
+  <string name="packageName">answer.android.phonemp3</string>
+
+  <!-- 本应用在外部存储空间中的工作目录 -->
+  <string name="workdir">micromusic</string>
+
+  <!-- 日志文件名格式 (规则是SimpleDateFormat的规则) -->
+  <string name="logfilenameformat">yyyy-MM-dd</string>
+
+  <!-- 日志每一行时间的格式 (规则是SimpleDateFormat的规则) -->
+  <string name="logtimeformat">[HH:mm:ss]</string>
+
+  <!-- 日志信息标签 -->
+  <string name="loginfo">[info]</string>
+
+  <!-- 日志警告标签 -->
+  <string name="logwarn">[warn]</string>
+
+  <!-- 日志错误标签 -->
+  <string name="logerror">[error]</string>
+
+  <!-- 日志文件的后缀名称 -->
+  <string name="logsuffix">.log</string>
+
+  <!-- 网络请求超时时间 5秒 -->
+  <integer name="nettimeout">5000</integer>
+  <!-- alert弹窗默认标题 -->
+  <string name="alerttitle">提示</string>
+
+  <!-- alert弹窗的确定按钮文字 -->
+  <string name="alertok">确定</string>
+
+  <!-- confirm弹窗的标题 -->
+  <string name="confirmtitle">@string/alerttitle</string>
+
+  <!-- confirm框的确认按钮文字 -->
+  <string name="confirmok">@string/alertok</string>
+
+  <!-- confirm弹窗的取消按钮文字 -->
+  <string name="confirmcancel">@string/cancel</string>
+
+  <string name="logo">logo</string>
+  <!-- logo界面显示时长 -->
+  <integer name="logotime">4000</integer>
+  <string name="microanswer">microanswer</string>
+  <string name="music">音乐</string>
+
+  <string name="dbName">phonemp3.db</string>
+
+  <!-- 默认的用户名 -->
+  <string name="defaultUserName">爆发的小宇宙</string>
+
+  <string name="about">关于</string>
+
+  <string name="exit">退出</string>
+
+  <string name="setting">设置</string>
+  <string name="ptalk">评价</string>
+  <string name="tool">工具</string>
+  <string name="toolb"><b>工具</b></string>
+  <string name="allMusic">所有歌曲</string>
+  <string name="tip">提示</string>
+  <string name="deletetip">将从存储设备删除文件，删除后不可恢复，你确定要删除吗？</string>
+  <string name="musicpermisiondenied">程序必须的权限被您拒绝了,获取不到您的歌曲信息.</string>
+  <string name="repermission">重新授权</string>
+  <string name="cancel">取消</string>
+  <string name="loading">加载中...</string>
+  <string name="playAll">播放全部</string>
+  <string name="allmusiccount">(共%1$d首歌曲)</string>
+  <string name="nothing">什么都没有</string>
+  <string name="nowplaying">正在播放</string>
+  <string name="musicinfo">歌曲信息</string>
+
+  <!-- 播放界面的菜单内容 -->
+  <array name="playmenu">
+    <item>@string/love</item>
+    <item>分享</item>
+    <item>@string/musicinfo</item>
+    <item>删除文件</item>
+  </array>
+
+  <!-- 歌曲信息部分 -->
+  <string name="musicnameis">歌曲名: %1$s</string>
+  <string name="musicalbumis">专辑名: %1$s</string>
+  <string name="musicartis">歌手: %1$s</string>
+  <string name="musicdurationis">时长: %1$s</string>
+  <string name="musicdiris">文件夹: %1$s</string>
+  <string name="musicsizeis">大小: %1$s</string>
+  <!-- 播放方式 -->
+  <string name="listplay">顺序播放</string>
+  <string name="randomplay">随机播放</string>
+  <string name="relistplay">列表循环</string>
+  <string name="singleplay">单曲循环</string>
+
+  <string name="setOk">设置成功</string>
+
+  <string name="shareTo">分享到...</string>
+  <string name="noappcando">没有能够处理这件事的应用</string>
+
+  <!-- 数据库版本 -->
+  <integer name="databaseversion">1</integer>
+
+  <string name="artistablumhas">歌手%1$s有%2$s张专辑：</string>
+  <string name="love">收藏</string>
+  <string name="unlove">取消收藏</string>
+  <string name="loveok">收藏成功</string>
+  <string name="nextwillplay">下一曲播放:</string>
+  <string name="checkupdatas">检查更新</string>
+  <string name="updating">检查更新中...</string>
+  <string name="more">更多</string>
+  <string name="pleasewait">敬请期待</string>
+  <string name="scanmusic">歌曲扫描</string>
+  <string name="todaycover">今日封面</string>
+  <string name="feedback">反馈建议</string>
+  <string name="downloading">下载中...</string>
+  <string name="saving">保存中...</string>
+  <string name="newversionfunction">新版本特性:</string>
+  <string name="newversion">新版本</string>
+  <string name="size">大小:</string>
+  <string name="version">版本:</string>
+  <string name="paused">已暂停</string>
+  <string name="feedbackhint">问题建议与描述</string>
+  <string name="contact">联系方式</string>
+  <string name="submiting">提交中...</string>
+  <string name="musicsearch">歌曲扫描</string>
+  <string name="self">自己</string>
+  <string name="timeout">定时退出</string>
+  <string name="timeouthint">将在你设定的时间后停止播放音乐</string>
+  <string name="willstopat">%1$s 后停止播放</string>
+  <string name="cancelTimeout">取消定时</string>
+  <string name="nothingPlay">什么都没播放</string>
+  <string name="clearplaylist">清空播放列表</string>
+  <string name="play">播放</string>
+  <string name="nextplay">下一曲播放</string>
+  <string name="share">分享</string>
+  <string name="info">信息</string>
+  <string name="delete">删除</string>
+  <string name="_musiccount">%s首歌</string>
+  <string name="junhengqi">均衡器</string>
+  <string name="hide">隐藏</string>
+</resources>

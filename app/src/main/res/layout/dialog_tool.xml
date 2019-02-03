@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+  <TextView
+      android:padding="10dp"
+      android:text="@string/toolb"
+      android:textColor="@android:color/black"
+      />
+
+  <View
+      android:layout_height="0.5dp"
+      android:background="@color/linecolor"
+      />
+
+  <TableRow>
+
+    <LinearLayout
+        android:id="@+id/dialog_tool_todaycover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+      <ImageView
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:src="@mipmap/ic_cover"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:text="@string/todaycover"
+          android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dialog_tool_timeout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+      <ImageView
+          android:id="@+id/imageView"
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:src="@mipmap/ic_time"/>
+
+      <TextView
+          android:id="@+id/tittmemitmetet"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:text="@string/timeout"
+          android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dialog_tool_junhengqi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+      <ImageView
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:src="@mipmap/ic_junhengqi"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:text="@string/junhengqi"
+          android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+  </TableRow>
+
+  <TableRow>
+
+
+    <LinearLayout
+        android:id="@+id/dialog_tool_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+      <ImageView
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:src="@mipmap/ic_feedback"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:text="@string/feedback"
+          android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dialog_tool_pleasewait"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+      <ImageView
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:src="@mipmap/ic_more"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:text="@string/pleasewait"
+          android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:visibility="invisible">
+
+      <ImageView
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:src="@mipmap/ic_more"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
+  </TableRow>
+  <!-- 这个是占位用的 -->
+  <View android:layout_height="100dp"/>
+</TableLayout>

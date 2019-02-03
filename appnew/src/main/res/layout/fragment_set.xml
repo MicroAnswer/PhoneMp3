@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:tag="@string/mtheme_background"
+    app:boottomColor="?attr/colorPrimary"
+    app:leftColor="?attr/colorPrimary"
+    app:rightColor="?attr/colorPrimary"
+    app:topColor="?attr/colorPrimary">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:tag="@string/mtheme_background"
+        android:theme="?windowActionBar"
+        app:title="@string/options" />
+
+    <cn.microanswer.phonemp3.ui.views.Group
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="@string/mtheme_color"
+        app:title="@string/normal"
+        app:titleBackground="@color/linecolor"
+        app:titleColor="@color/colorPrimary">
+
+        <cn.microanswer.phonemp3.ui.views.Cell
+            android:id="@+id/cellSetItemScannMusic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_list_item_style"
+            android:paddingBottom="@dimen/setItemPaddingTB"
+            android:paddingLeft="@dimen/setItemPaddingLR"
+            android:paddingRight="@dimen/setItemPaddingLR"
+            android:paddingTop="@dimen/setItemPaddingTB"
+            android:tag="@string/mtheme_color"
+            app:desc="@string/descScannSet"
+            app:icon="@drawable/icon_search"
+            app:titLe="@string/scannMusic"
+            app:underLine="1px" />
+
+        <cn.microanswer.phonemp3.ui.views.Cell
+            android:id="@+id/cellSetItemThemeColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_list_item_style"
+            android:paddingBottom="@dimen/setItemPaddingTB"
+            android:paddingLeft="@dimen/setItemPaddingLR"
+            android:paddingRight="@dimen/setItemPaddingLR"
+            android:paddingTop="@dimen/setItemPaddingTB"
+            android:tag="@string/mtheme_color"
+            app:desc="@string/changeMainColor"
+            app:icon="@drawable/icon_theme"
+            app:titLe="@string/themeColor"
+            app:underLine="0px" />
+
+    </cn.microanswer.phonemp3.ui.views.Group>
+
+    <cn.microanswer.phonemp3.ui.views.Group
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="@string/mtheme_color"
+        app:title="@string/about"
+        app:titleBackground="@color/linecolor"
+        app:titleColor="@color/colorPrimary">
+
+        <cn.microanswer.phonemp3.ui.views.Cell
+            android:id="@+id/cellCheckUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_list_item_style"
+            android:paddingBottom="@dimen/setItemPaddingTB"
+            android:paddingLeft="@dimen/setItemPaddingLR"
+            android:paddingRight="@dimen/setItemPaddingLR"
+            android:paddingTop="@dimen/setItemPaddingTB"
+            android:tag="@string/mtheme_color"
+            app:icon="@drawable/icon_check"
+            app:titLe="@string/checkUpdate"
+            app:underLine="1px" >
+
+            <TextView
+                android:id="@+id/textViewVersion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </cn.microanswer.phonemp3.ui.views.Cell>
+
+        <cn.microanswer.phonemp3.ui.views.Cell
+            android:layout_width="match_parent"
+            android:background="@drawable/my_list_item_style"
+            android:paddingBottom="@dimen/setItemPaddingTB"
+            android:id="@+id/cellCodeUse"
+            android:paddingTop="@dimen/setItemPaddingTB"
+            app:icon="@drawable/icon_code"
+            android:paddingLeft="@dimen/setItemPaddingLR"
+            android:paddingRight="@dimen/setItemPaddingLR"
+            android:tag="@string/mtheme_color"
+            app:titLe="开源引用"
+            app:underLine="1px"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:tag="@string/mtheme_color"
+                android:src="@drawable/icon_right"
+                android:layout_height="25dp" />
+
+        </cn.microanswer.phonemp3.ui.views.Cell>
+
+        <cn.microanswer.phonemp3.ui.views.Cell
+            android:id="@+id/cellFeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_list_item_style"
+            android:paddingBottom="@dimen/setItemPaddingTB"
+            android:paddingLeft="@dimen/setItemPaddingLR"
+            android:paddingRight="@dimen/setItemPaddingLR"
+            android:paddingTop="@dimen/setItemPaddingTB"
+            app:icon="@drawable/icon_feedback"
+            android:tag="@string/mtheme_color"
+            app:titLe="反馈建议" >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:tag="@string/mtheme_color"
+                android:src="@drawable/icon_right"
+                android:layout_height="25dp" />
+        </cn.microanswer.phonemp3.ui.views.Cell>
+
+    </cn.microanswer.phonemp3.ui.views.Group>
+
+</cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout>

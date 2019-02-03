@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 音乐条目输出样式 -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/my_list_item_style"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+  <ImageView
+      android:layout_marginLeft="@dimen/musicItemPaddingLR"
+      android:id="@+id/imageviewMusicImg"
+      android:layout_marginTop="@dimen/musicItemPaddingTB"
+      android:layout_marginBottom="@dimen/musicItemPaddingTB"
+      android:scaleType="fitCenter"
+      android:layout_width="@dimen/musicItemImgSize"
+      android:layout_height="@dimen/musicItemImgSize"
+      android:contentDescription="@string/musicImgdesc"
+      android:src="@drawable/icon_ablem"/>
+
+  <LinearLayout
+      android:layout_marginTop="@dimen/musicItemPaddingTB"
+      android:layout_marginBottom="@dimen/musicItemPaddingTB"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="6dp"
+      android:layout_weight="1"
+      android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textviewMusicTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="歌曲名"
+        android:textColor="?android:textColorPrimary"/>
+
+    <TextView
+        android:id="@+id/textviewMusicMore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textSize="12sp"
+        android:text="歌手 - 专辑名"
+        android:textColor="?android:textColorSecondary"/>
+
+  </LinearLayout>
+
+  <!-- 菜单区域 -->
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:orientation="horizontal"
+      android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/musicItemMenu"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_width="50dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/my_list_item_style"
+        android:scaleType="center"
+        android:src="@drawable/ic_menu"
+        android:layout_height="match_parent" />
+
+  </LinearLayout>
+
+</LinearLayout>

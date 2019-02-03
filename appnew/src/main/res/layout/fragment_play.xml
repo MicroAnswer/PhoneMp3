@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativeLayoutPlayView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333333">
+
+    <!-- 播放界面的背景 -->
+    <ImageView
+        android:id="@+id/imageviewBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/descriptionpl_fragmentbackground" />
+
+    <!-- 内容部分 -->
+    <cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:boottomColor="@android:color/transparent"
+        app:leftColor="@android:color/transparent"
+        app:rightColor="@android:color/transparent"
+        app:topColor="@android:color/transparent">
+
+        <!-- 顶部 toolBar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/toolbarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:subtitle="@string/microanswer"
+            app:subtitleTextColor="@android:color/white"
+            app:title="@string/app_name"
+            app:titleTextColor="@android:color/white" />
+
+        <!-- 中间 （封面-歌词区域） -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:tag="@string/mtheme_color"
+                android:padding="30dp"
+                android:src="@drawable/icon_disk" />
+        </LinearLayout>
+
+
+        <!-- 底部控制区域 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="12dp">
+
+            <!-- 歌曲进度条 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="01:43"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp" />
+
+                <SeekBar
+                    android:layout_width="0dp"
+                    android:progress="0"
+                    android:secondaryProgress="700"
+                    android:max="1000"
+                    android:thumbOffset="0.0dp"
+                    style="@style/playBarStyle"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="03:00"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:tag="@string/mtheme_color"
+                    android:src="@drawable/icon_previous" />
+
+                <ImageView
+                    android:id="@+id/imageviewPlay_pause"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:clickable="true"
+                    android:tag="@string/mtheme_color"
+                    android:layout_weight="1"
+                    android:src="@drawable/icon_play" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:tag="@string/mtheme_color"
+                    android:layout_weight="1"
+                    android:src="@drawable/icon_next" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout>
+
+</RelativeLayout>

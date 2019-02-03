@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">音乐怎么了</string>
+    <string name="title_activity_index">IndexActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="microanswer">Microanswer</string>
+
+    <string name="cpv_default_title">选择一个颜色</string>
+    <string name="cpv_presets">Presets</string>
+    <string name="cpv_custom">Custom</string>
+    <string name="cpv_select">确定</string>
+    <string name="cpv_transparency">Transparency</string>
+
+    <string name="loading">加载中…</string>
+    <string name="scanning">扫描中…</string>
+
+    <string name="introduction_txt0">现在展示的是是介绍内容一</string>
+    <string name="introduction_txt1">现在展示的是第二条介绍内容</string>
+    <string name="introduction_txt2">现在展示的是介绍内容三</string>
+
+    <string name="useNow">立即使用</string>
+    <string name="noPlayingMusic">现在没有播放音乐</string>
+    <string name="navigationHeadBackground">侧滑菜单头部背景</string>
+    <string name="options">选项</string>
+    <string name="setting">设置</string>
+    <string name="exit">退出</string>
+    <string name="refresh">刷新</string>
+    <string name="recent_play">最近播放</string>
+    <string name="mylove">我的收藏</string>
+    <string name="changeMainColor">自定义应用中的主色颜色</string>
+    <string name="checkUpdate">检查更新</string>
+    <string name="checkUpdateDesc">访问服务器进行更新</string>
+    <string name="system">系统</string>
+    <string name="themeColor">主题颜色</string>
+    <string name="normal">通用</string>
+    <string name="setinfoloadfail">[%s]\n设置信息加载失败\n请重试</string>
+    <string name="nightMode">夜间模式</string>
+    <string name="dayMode">日间模式</string>
+    <string name="alert">提示</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="changeThemeColorTip">自定义颜色将退出夜间模式，确定要退出夜间模式吗？</string>
+    <string name="no_view">no view</string>
+
+    <string name="mtheme_background">mtheme_background</string>
+    <string name="mtheme_color">mtheme_color</string>
+    <string name="ownThemeColor">自定义主题颜色</string>
+    <string name="about">关于</string>
+    <string name="recentemptyhint">没有记录\n这里会记录最近播放过的200首歌曲</string>
+    <string name="myloveemptyhint">没有记录\n你所有收藏的歌曲会在这里显示</string>
+    <string name="playlistemptyhint">没有歌单\n点击立刻创建歌单</string>
+    <string name="descriptionpl_fragmentbackground">plfragmentBackground</string>
+    <string name="share">分享</string>
+    <string name="musicImgdesc">音乐条目图片</string>
+    <string name="allmusicemptyhint">没有在您的手机里找到歌曲</string>
+    <string name="scannnow">立即扫描</string>
+    <string name="allmusic">所有歌曲</string>
+    <string name="descScannSet">扫描手机中所有已下载的歌曲</string>
+    <string name="scannMusic">扫描歌曲</string>
+    <string name="scannmusic">扫描歌曲</string>
+    <string name="timeout">定时退出</string>
+    <string name="morefunc">更多功能</string>
+    <string name="myplaylist">我的歌单</string>
+    <string name="createListNow"> 立即创建歌单 </string>
+    <string name="create_new_playlist">创建新歌单</string>
+    <string name="new_playlist">新歌单</string>
+    <string name="edit">编辑</string>
+    <string name="switch_view">切换视图</string>
+    <string name="manage">管理</string>
+    <string name="rename">重命名</string>
+    <string name="detail">详情</string>
+    <string name="delete">删除</string>
+    <string name="addToPlayList">添加到歌单</string>
+    <string name="tip">提示</string>
+
+    <item name="refresh" type="id" />
+
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/fragment_lovemusic_listview"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:clipToPadding="false"
+      android:padding="4dp"/>
+
+  <include layout="@layout/view_loadview"/>
+
+  <answer.android.phonemp3.view.LetterView
+      android:id="@+id/fragment_lovemusic_letterview"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_alignParentRight="true"
+      android:background="#44aaaaaa"
+      android:paddingLeft="3dp"
+      android:paddingRight="4dp"
+      app:hint_background="@drawable/color_primary_border5"
+      app:hint_text_color="@android:color/white"
+      app:hint_text_size="17sp"
+      app:text_color="#666"
+      app:text_current_color="#666"
+      app:text_size="14sp"/>
+
+</RelativeLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 默认按钮样式 -->
+    <style name="myButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="background">@drawable/my_button_style</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="BaseTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <!-- 处理沉浸式状态栏和导航栏 - 在 Android5.0 之后，让它们不透明，然后绘制透明的颜色 -->
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+    </style>
+</resources>

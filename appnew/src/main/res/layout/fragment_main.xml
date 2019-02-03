@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayoutMenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <!-- 主要显示内容的位置 -->
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+      <FrameLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1">
+
+        <FrameLayout
+            android:id="@+id/frameLayoutMainBody"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/playcontrolershadle"/>
+      </FrameLayout>
+      <!-- 底部的播放条 -->
+      <include layout="@layout/layout_playcontroler"/>
+    </LinearLayout>
+
+  </FrameLayout>
+
+  <!-- 侧滑菜单部分 -->
+  <cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout
+      android:id="@+id/navigationViewMenu"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_gravity="start"
+      android:background="?android:windowBackground"
+      android:orientation="vertical"
+      android:tag="@string/mtheme_background"
+      app:boottomColor="?attr/colorPrimary"
+      app:ignoreRight="true"
+      app:ignoreTop="true"
+      app:leftColor="?attr/colorPrimary">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+
+        <include layout="@layout/layout_navigation_head"/>
+
+        <include
+            layout="@layout/layout_navigation_body"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+      </LinearLayout>
+    </ScrollView>
+
+    <!-- 侧滑菜单底部 -->
+    <include layout="@layout/layout_navigation_foot"/>
+
+  </cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

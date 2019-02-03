@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="vertical"
+    app:ignoreTop="true"
+    app:boottomColor="@color/colorPrimary"
+    app:leftColor="@color/colorPrimary"
+    app:rightColor="@color/colorPrimary"
+    app:topColor="@color/colorPrimary"
+    android:tag="@string/mtheme_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:id="@+id/linearLayoutPlayControler"
+        android:clickable="true"
+        android:background="@drawable/my_list_item_style"
+        android:layout_height="@dimen/playcontrolerHeight">
+
+        <ImageView
+            android:layout_width="@dimen/playcontrolerHeight"
+            android:id="@+id/imageViewCover"
+            android:src="@drawable/icon_ablem"
+            android:layout_height="@dimen/playcontrolerHeight" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/textviewMusicTitle"
+                android:text="@string/app_name"
+                android:maxLines="2"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="16sp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/textviewMusicdesc"
+                android:textSize="14sp"
+                android:textColor="?android:textColorSecondary"
+                android:text="@string/microanswer"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="40dp"
+                android:src="@drawable/icon_play"
+                android:clickable="true"
+                android:padding="5dp"
+                android:focusable="true"
+                android:id="@+id/imageViewPausePlay"
+                android:foreground="@drawable/my_list_item_style"
+                android:tag="@string/mtheme_color"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:src="@drawable/icon_next"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/imageviewNext"
+                android:padding="5dp"
+                android:tag="@string/mtheme_color"
+                android:foreground="@drawable/my_list_item_style"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:src="@drawable/icon_love"
+                android:clickable="true"
+                android:id="@+id/imageviewLove"
+                android:padding="8dp"
+                android:focusable="true"
+                android:foreground="@drawable/my_list_item_style"
+                android:tag="@string/mtheme_color"
+                android:layout_height="match_parent" />
+
+
+
+
+    </LinearLayout>
+
+
+</cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout>

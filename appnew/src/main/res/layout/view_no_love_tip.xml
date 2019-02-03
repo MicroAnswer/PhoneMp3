@@ -1,0 +1,21 @@
+<LinearLayout android:id="@+id/linearLayoutEmptyView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/pic_empty"
+        android:tag="@string/mtheme_color"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/myloveemptyhint"/>
+
+
+</LinearLayout>

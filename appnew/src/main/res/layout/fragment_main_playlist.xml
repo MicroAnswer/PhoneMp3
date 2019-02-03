@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:tag="@string/mtheme_background"
+    app:boottomColor="?attr/colorPrimary"
+    app:ignoreBoottom="true"
+    app:leftColor="?attr/colorPrimary"
+    app:rightColor="?attr/colorPrimary"
+    app:topColor="?attr/colorPrimary">
+
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/colorPrimary"
+      android:tag="@string/mtheme_background"
+      app:title="@string/myplaylist"/>
+
+  <FrameLayout
+      android:id="@+id/musicListView"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1">
+
+    <!-- 空数据界面 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayoutEmptyView"
+        android:gravity="center"
+        android:orientation="vertical">
+
+      <ImageView
+          android:layout_width="100dp"
+          android:layout_height="100dp"
+          android:src="@drawable/pic_empty"
+          android:tag="@string/mtheme_color"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:text="@string/playlistemptyhint"/>
+
+      <Button
+          android:id="@+id/buttonAddPlayList"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/createListNow"/>
+
+    </LinearLayout>
+
+    <!-- 加载提示界面 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayoutLoadingView"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+      <ProgressBar
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:text="@string/loading"
+          android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <!-- 数据内容展示区域 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/recyclerViewPlayList"
+        android:visibility="gone"
+        android:layout_height="match_parent"/>
+
+  </FrameLayout>
+
+</cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout>

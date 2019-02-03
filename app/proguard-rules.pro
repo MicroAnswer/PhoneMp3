@@ -1,0 +1,20 @@
+-keep class org.xutils.** {*;}
+-keep class com.baidu.mapapi.** {*;}
+-keep class vi.com.gdi.bgl.android.**{*;}
+-keep class com.nostra13.** {*;}
+-keep class android.** {*;}
+-keep class m.framework.** {*;}
+-keep class cn.sharesdk.** {*;}
+-keep class com.readystatesoftware.systembartint.** {*;}
+-keep class com.hp.hpl.sparta.** {*;}
+-keep class net.sourceforge.pinyin4j.** {*;}
+-keep class com.bumptech.glide.** {*;}
+-keep class de.hdodenhof.circleimageview.** {*;}
+-keep class com.umeng.analytics.** {*;}
+-keep public class * extends android.app.Activity
+-keep class answer.android.phonemp3.bean.** {*;}
+-keep class answer.android.phonemp3.view.** {*;}
+# -keep class answer.android.phonemp3.db.** {*;}
+-keep class answer.android.phonemp3.tool.GlideConfiguration
+-keep class answer.android.phonemp3.fragment.BaseFragment
+-keep class com.bumptech.glide.** {*;}

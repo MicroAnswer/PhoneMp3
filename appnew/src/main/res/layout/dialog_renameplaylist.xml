@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textfield.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Design.TextInputLayout"
+    android:layout_width="match_parent"
+    android:id="@+id/mTextInputLayout"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:hint="歌单名:"
+    app:counterEnabled="true"
+    app:counterMaxLength="10"
+    app:errorEnabled="true"
+    app:helperText="输入歌单名"
+    app:helperTextEnabled="true">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/edittextListName"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:focusedByDefault="true"
+        android:layout_width="match_parent"
+        android:maxLength="10"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary" />
+</com.google.android.material.textfield.TextInputLayout>

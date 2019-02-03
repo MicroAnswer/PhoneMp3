@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorPrimary">#c51162</color>
+  <color name="colorPrimaryDark">#520628</color>
+  <color name="colorAccent">@color/colorPrimary</color>
+  <color name="linecolor">#22666666</color>
+
+
+  <color name="navigationHeadTextColor">@android:color/white</color>
+  <color name="seekBarBackgroundColor">#46ffffff</color>
+</resources>

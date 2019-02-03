@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 列表点击效果 -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+        android:color="#33666666">
+  <item android:id="@android:id/mask">
+    <color android:color="#ffffff"/>
+  </item>
+  <item>
+    <selector>
+      <item android:state_pressed="true">
+        <color android:color="#33666666"/>
+      </item>
+    </selector>
+  </item>
+</ripple>

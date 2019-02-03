@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:background="@android:color/white"
+  android:orientation="vertical">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <TextView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:padding="15dp"
+      android:text="@string/musicinfo"
+      android:textColor="@android:color/black"
+      android:textSize="18sp"/>
+
+    <ImageView
+      android:id="@+id/dialog_playing_close"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:background="?android:attr/selectableItemBackground"
+      android:clickable="true"
+      android:focusable="true"
+      android:padding="10dp"
+      android:src="@drawable/ic_close"/>
+
+  </LinearLayout>
+
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="0.5dp"
+    android:background="@color/linecolor"/>
+
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="15dp"/>
+
+  <TextView
+    android:id="@+id/dialog_onmusicinfo_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingBottom="6dp"
+    android:paddingLeft="15dp"
+    android:paddingTop="6dp"
+    android:text="@string/musicnameis"
+    android:textColor="#444444"/>
+
+  <TextView
+    android:id="@+id/dialog_onmusicinfo_ablum"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingBottom="6dp"
+    android:paddingLeft="15dp"
+    android:paddingTop="6dp"
+    android:text="@string/musicalbumis"
+    android:textColor="#444444"/>
+
+  <TextView
+    android:id="@+id/dialog_onmusicinfo_art"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingBottom="6dp"
+    android:paddingLeft="15dp"
+    android:paddingTop="6dp"
+    android:text="@string/musicartis"
+    android:textColor="#444444"/>
+
+
+  <TextView
+    android:id="@+id/dialog_onmusicinfo_duration"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingBottom="6dp"
+    android:paddingLeft="15dp"
+    android:paddingTop="6dp"
+    android:text="@string/musicdurationis"
+    android:textColor="#444444"/>
+
+
+  <TextView
+    android:id="@+id/dialog_onmusicinfo_dir"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingBottom="6dp"
+    android:paddingLeft="15dp"
+    android:paddingTop="6dp"
+    android:text="@string/musicdiris"
+    android:textColor="#444444"/>
+
+
+  <TextView
+    android:id="@+id/dialog_onmusicinfo_size"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingBottom="6dp"
+    android:paddingLeft="15dp"
+    android:paddingTop="6dp"
+    android:text="@string/musicsizeis"
+    android:textColor="#444444"/>
+
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="15dp"/>
+
+</LinearLayout>

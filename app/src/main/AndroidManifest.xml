@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="answer.android.phonemp3">
+
+  <!-- 读取外部存储权限 -->
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+  <!-- 写外部存储空间权限 -->
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+  <!-- 判断耳机存在没有要用这个权限 -->
+  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+
+  <!-- 网络权限 -->
+  <uses-permission android:name="android.permission.INTERNET"/>
+
+  <!-- 友盟统计需要的权限 -->
+  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+  
+  <!--
+更改设置(铃声)
+<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+  -->
+  <application
+      android:name=".app.MApplication"
+      android:allowBackup="true"
+      android:icon="@mipmap/ic_launcher"
+      android:label="@string/app_name"
+      android:supportsRtl="true"
+      android:theme="@style/app_style">
+
+    <meta-data
+        android:name="answer.android.phonemp3.tool.GlideConfiguration"
+        android:value="GlideModule"/>
+
+    <activity
+        android:name=".activity.LogoActivity"
+        android:theme="@style/activity_style_fullscreen">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+    <activity
+        android:name=".activity.MainActivity"
+        android:icon="@drawable/ic_music"
+        android:label="@string/music"
+        android:launchMode="singleTask"
+        android:logo="@drawable/ic_music"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".activity.WebViewActivity"
+        android:label="@string/app_name"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".activity.PlayActivity"
+        android:parentActivityName=".activity.MainActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".activity.SettingActivity"
+        android:label="@string/setting"
+        android:screenOrientation="portrait"/>
+
+    <activity
+        android:name=".activity.CoverActivity"
+        android:label="@string/todaycover"
+        android:screenOrientation="portrait"/>
+
+    <activity
+        android:name=".activity.NewVersionDownloadActivity"
+        android:label="@string/newversion"
+        android:screenOrientation="portrait"/>
+
+    <activity
+        android:name=".activity.FeedBackActivity"
+        android:label="@string/feedback"
+        android:screenOrientation="portrait"/>
+
+    <activity
+        android:name=".activity.MusicSearchActivity"
+        android:label="@string/musicsearch"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".activity.UserActivity"
+        android:label="@string/self"
+        android:screenOrientation="portrait"/>
+
+    <service
+        android:name=".service.PhoneMp3PlayService"
+        android:process=":musicplayprocess"/>
+
+    <receiver android:name=".service.MediaButtonRecver">
+      <intent-filter android:priority="2147483647">
+        <action android:name="android.intent.action.MEDIA_BUTTON"/>
+      </intent-filter>
+    </receiver>
+
+    <provider
+        android:name="androidx.core.content.FileProvider"
+        android:authorities="answer.android.phonemp3"
+        android:exported="false"
+        android:grantUriPermissions="true">
+      <meta-data
+          android:name="android.support.FILE_PROVIDER_PATHS"
+          android:resource="@xml/file_paths"/>
+    </provider>
+
+    <activity
+        android:name=".activity.AblumActivity"
+        android:screenOrientation="portrait"
+        android:theme="@style/ablumactivitystyle"/>
+  </application>
+
+</manifest>

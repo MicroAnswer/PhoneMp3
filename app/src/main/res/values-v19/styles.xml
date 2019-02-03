@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="ablumactivitystyle" parent="app_style">
+    <item name="android:windowEnterTransition">@transition/ablumactivity_in</item>
+    <item name="android:windowReturnTransition">@transition/ablumactivity_out</item>
+  </style>
+</resources>
