@@ -134,7 +134,7 @@ dependencies {
     // 名为jar的都会被依赖，非常方便。
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // 如果你要引入某个本地module的话，那么需要用compile project(‘×××’)。
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.google.android.material:material:1.1.0-alpha03'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
