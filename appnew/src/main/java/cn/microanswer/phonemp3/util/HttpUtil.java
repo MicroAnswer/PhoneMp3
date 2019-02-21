@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import cn.microanswer.phonemp3.API;
 import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -40,6 +41,8 @@ import okhttp3.Response;
  * 	</pre>
  */
 public class HttpUtil {
+
+    private static Logger logger = Logger.getLogger(HttpUtil.class);
     private static String CHARSET = "UTF-8";
     private static final MediaType APPLICATION_JSON = MediaType.parse("application/json");
     private static final MediaType APPLICATION_XML = MediaType.parse("application/xml");
@@ -542,9 +545,96 @@ public class HttpUtil {
         return map2wwwUrlFormEncode(params, CHARSET);
     }
 
+    /**
+     * 向 microanswer.cn 发起请求
+     * @param method
+     * @param param
+     */
+    public static String postCnMicroanswer(String method, Map<String, String> param) throws Exception {
+        final String url = API.URL;
+
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("method", method);
+        if (param != null) {
+            JSONObject data = new JSONObject();
+            Set<Map.Entry<String, String>> entries = param.entrySet();
+            for (Map.Entry<String, String> e : entries) {
+                data.put(e.getKey(), e.getValue());
+            }
+            requestBody.put("data", data);
+        }
+        String requestString = requestBody.toJSONString();
+
+        logger.i(String.format("请求接口：%s，方法：%s，参数：%s", url, method, requestString));
+        String s;
+        try {
+            s = postApplicationJson(url, requestString);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.e("请求网络出错：" + e.getMessage());
+            s = "";
+        }
+        logger.i(String.format("接口返回：%s", s));
+
+        return s;
+    }
+
+    /**
+     * 向 microanswer.cn 发起请求
+     * @param method
+     * @param param
+     */
+    public static void postCnMicroanswer(final String method, final Map<String, String> param, final HttpUtilListener l) {
+        if (null == l) { return; }
+
+        // 构建请求体
+        try {
+            Task.TaskHelper.getInstance().run(new Task.ITask<Object, JSONObject>() {
+                @Override
+                public JSONObject run(Object empty) throws Exception {
+
+                    String s = postCnMicroanswer(method, param);
+
+                    JSONObject resp = JSON.parseObject(s);
+
+                    if (resp.getIntValue("code") != 200) {
+                        throw new Exception(new Exception(resp.getString("msg")));
+                    }
+
+                    return resp;
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    l.onError(e);
+                }
+
+                @Override
+                public void afterRun(JSONObject data) {
+                    if (null == data) {
+                        l.onError(new Exception("HttpUtil: 服务器返回数据为空。"));
+                        return;
+                    }
+                    try {
+                        l.onResponse(data);
+                    }catch (Exception e){
+                        l.onError(e);
+                    }
+                }
+            });
+
+        }catch (Exception e){
+            l.onError(e);
+        }
+    }
+
     // 持有2个泛型定义和一个方法的接口
     private interface Fun<A, B> {
         void d0fun(A a, B b) throws Exception;
+    }
+    public interface HttpUtilListener {
+        void onResponse(JSONObject response) throws Exception;
+        void onError(Exception e);
     }
 
     public static class NetException extends Exception {

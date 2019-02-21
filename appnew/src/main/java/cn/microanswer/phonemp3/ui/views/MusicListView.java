@@ -141,7 +141,6 @@ public class MusicListView extends FrameLayout implements MusicItemRecyclerViewA
             current = SHOW_DATA;
             return;
         }
-        System.out.println("11");
 
         // 影藏加载容器，显示数据容器。
         recyclerView.setAlpha(0F);
