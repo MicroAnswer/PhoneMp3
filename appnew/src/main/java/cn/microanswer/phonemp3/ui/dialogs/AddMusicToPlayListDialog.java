@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
@@ -103,6 +104,21 @@ public class AddMusicToPlayListDialog extends BaseDialog {
                 return p.getRamark();
             }
         });
+
+        listView.setAlpha(0f);
+        listView.setVisibility(View.VISIBLE);
+        linearLayoutLoadingView.animate().alpha(0f).setDuration(animTime);
+        listView.animate()
+                .alpha(1f)
+                .setDuration(animTime)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        linearLayoutLoadingView.setVisibility(View.GONE);
+                    }
+                });
+
     }
 
     private void showEmpty() {

@@ -55,40 +55,28 @@ android {
     // 构建类型，在Android Gradle工程中，它已经帮我们内置了debug和release两个构建类型，两种模式主要区别在
     // 于，能否在设备上调试以及签名不一样，其他代码和文件资源都是一样的。
     buildTypes {
-
         // 正式版本配置。
         release {
-
             // 应用id后缀
             applicationIdSuffix
-
             // 版本名称后缀
             versionNameSuffix
-
             // 签名配置
             signingConfig signingConfigs.meCfg
-
             // 是否混淆
             minifyEnabled false
-
             // 混淆文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
             // 是否生成一个debug的apk
-            debuggable false
-
+            debuggable true
             // 清单占位符
             manifestPlaceholders
-
             // 是否去除未利用的资源，默认false，表示不去除。
             shrinkResources false
-
             // 是否拆成多个Dex
             multiDexEnabled false
-
             // 指定文本文件编译进主Dex文件中
             multiDexKeepFile
-
             // 指定混淆文件编译进主Dex文件中
             multiDexKeepProguard
         }
