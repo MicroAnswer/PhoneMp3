@@ -7,10 +7,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
@@ -26,13 +28,12 @@ import cn.microanswer.phonemp3.entity.PlayList_Table;
 import cn.microanswer.phonemp3.util.Task;
 import cn.microanswer.phonemp3.util.Utils;
 
-// TODO 完成添加歌曲到歌单的功能。 此弹出框只有在有多个歌单的时候弹出，没有歌单的情况。只有一个歌单默认自动添加到默认歌单。
-public class AddMusicToPlayListDialog extends BaseDialog {
+public class AddMusicToPlayListDialog extends BaseDialog implements AdapterView.OnItemClickListener {
 
     // 要添加的歌曲
     private Music mMusic;
 
-    // 所有的播放列表。
+    // 所有播放列表
     private List<PlayList> playLists;
 
     // 加载视图
@@ -45,7 +46,7 @@ public class AddMusicToPlayListDialog extends BaseDialog {
     private int animTime;
 
     public AddMusicToPlayListDialog(@NonNull Context context, Music music) {
-        super(context);
+        super(context, context.getResources().getString(R.string.addToPlayList));
         mMusic = music;
 
         // 使用系统的动画时长。
@@ -59,6 +60,7 @@ public class AddMusicToPlayListDialog extends BaseDialog {
         linearLayoutLoadingView = view.findViewById(R.id.linearLayoutLoadingView);
         emptyView = view.findViewById(R.id.emptyview);
         listView = view.findViewById(R.id.listview);
+        listView.setOnItemClickListener(this);
 
         return view;
     }
@@ -96,7 +98,8 @@ public class AddMusicToPlayListDialog extends BaseDialog {
     }
 
     private void showData(List<?> value) {
-        listView.setAdapter(new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,value){
+        this.playLists = (List<PlayList>) value;
+        listView.setAdapter(new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, value) {
             @Nullable
             @Override
             public Object getItem(int position) {
@@ -135,5 +138,35 @@ public class AddMusicToPlayListDialog extends BaseDialog {
                     }
                 });
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Task.TaskHelper.getInstance().run(new Task.ITask<Object, Object>() {
+
+
+            @Override
+            public Object run(Object param) throws Exception {
+
+                PlayList playList = playLists.get(i);
+                boolean has = playList.has(mMusic);
+                if (!has) {
+                    mMusic = Music.from(mMusic);
+                    mMusic.setId(0L);
+                    mMusic.setListId(playList.getId());
+                    return mMusic.save();
+                } else {
+                    return true; // 播放列表已经有这首歌曲，还是返回true，但是不会再进行保存。
+                }
+            }
+
+            @Override
+            public void afterRun(Object value) {
+                super.afterRun(value);
+                Boolean v = (Boolean) value;
+                Toast.makeText(getContext(), v ? "添加成功" : "添加失败", Toast.LENGTH_SHORT).show();
+            }
+        });
+        dismiss();
     }
 }

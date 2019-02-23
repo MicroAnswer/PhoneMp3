@@ -68,7 +68,7 @@ android {
             // 混淆文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             // 是否生成一个debug的apk
-            debuggable true
+            debuggable false
             // 清单占位符
             manifestPlaceholders
             // 是否去除未利用的资源，默认false，表示不去除。

@@ -29,7 +29,8 @@ public class AlertDialog extends BaseDialog {
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17F);
         textView.setTextColor(Color.BLACK);
         int i = Utils.UI.dp2px(getContext(), 5F);
-        textView.setPadding(0, 0, 0, i);
+        int lf = Utils.UI.dp2px(getContext(), 15F);
+        textView.setPadding(lf, 0, lf, i);
         textView.setText(msg);
 
         return textView;

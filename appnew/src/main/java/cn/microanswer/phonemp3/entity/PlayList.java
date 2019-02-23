@@ -47,6 +47,14 @@ public class PlayList extends BaseModel {
         return musics;
     }
 
+    // 判断某首歌曲是否在播放列表中。
+    public boolean has(Music music) {
+        return SQLite.select().from(Music.class)
+                .where(Music_Table.list_id.eq(id))
+                .and(Music_Table._data.eq(music.get_data()))
+                .querySingle() != null;
+    }
+
     // @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "musics")
     public List<Music> getMusics(boolean ascending) {
         return SQLite.select().from(Music.class)
