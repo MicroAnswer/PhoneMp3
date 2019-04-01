@@ -207,8 +207,15 @@ public class Utils {
             return drawable1;
         }
 
+        public static DisplayMetrics getScreenSize(Context context) {
+            return context.getResources().getDisplayMetrics();
+        }
+
+        public static int getScreenHeight(Context context) {
+            return getScreenSize(context).heightPixels;
+        }
         public static int getScreenWidth(Context context) {
-            return context.getResources().getDisplayMetrics().widthPixels;
+            return getScreenSize(context).widthPixels;
         }
 
         public static ConfirmDialog confirm(PhoneMp3Activity phoneMp3Activity, String msg, String sureTxt, DialogInterface.OnClickListener onClickListener) {

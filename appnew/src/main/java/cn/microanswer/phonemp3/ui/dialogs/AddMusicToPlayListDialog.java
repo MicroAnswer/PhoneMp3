@@ -2,10 +2,8 @@ package cn.microanswer.phonemp3.ui.dialogs;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -75,9 +73,9 @@ public class AddMusicToPlayListDialog extends BaseDialog implements AdapterView.
 
 
     private void loadPlayList() {
-        Task.TaskHelper.getInstance().run(new Task.ITask<Void, List>() {
+        Task.TaskHelper.getInstance().run(new Task.ITask<Void, List<PlayList>>() {
             @Override
-            public List<?> run(Void param) throws Exception {
+            public List<PlayList> run(Void param) throws Exception {
                 return SQLite.select().from(PlayList.class)
                         .where(PlayList_Table.name.eq(Database.PLAYLIST_NAME_USEROWN))
                         .queryList();
@@ -97,8 +95,8 @@ public class AddMusicToPlayListDialog extends BaseDialog implements AdapterView.
         });
     }
 
-    private void showData(List<?> value) {
-        this.playLists = (List<PlayList>) value;
+    private void showData(List<PlayList> value) {
+        this.playLists = value;
         listView.setAdapter(new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, value) {
             @Nullable
             @Override

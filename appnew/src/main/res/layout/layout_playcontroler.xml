@@ -35,15 +35,22 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:layout_height="wrap_content">
-            <TextView
+            <cn.microanswer.phonemp3.ui.views.MarqueeTextView
                 android:layout_width="wrap_content"
                 android:id="@+id/textviewMusicTitle"
                 android:text="@string/app_name"
-                android:maxLines="2"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="16sp"
                 android:layout_height="wrap_content" />
-            <TextView
+            <cn.microanswer.phonemp3.ui.views.MarqueeTextView
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:layout_width="wrap_content"
                 android:id="@+id/textviewMusicdesc"
                 android:textSize="14sp"
