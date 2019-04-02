@@ -4,10 +4,21 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
+import android.graphics.drawable.RippleDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import android.graphics.drawable.shapes.RoundRectShape;
+import android.graphics.drawable.shapes.Shape;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,8 +26,10 @@ import android.provider.MediaStore;
 import android.support.v4.media.MediaMetadataCompat;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -153,6 +166,43 @@ public class Utils {
                     fitSystemLinearLayout.setLeftColor(colorPrimary);
                     fitSystemLinearLayout.setTopColor(colorPrimary);
                     fitSystemLinearLayout.setRightColor(colorPrimary);
+                } else if (view instanceof Button) {
+                    Drawable background = view.getBackground();
+                    Log.i("background", background.getClass().getName());
+
+                    // int dp8 = UI.dp2px(view.getContext(), 8f);
+                    // int dp10 = UI.dp2px(view.getContext(), 10f);
+                    // int outRadius = 100;
+                    // int innerRadius = 0;
+                    // /* 圆角矩形 */
+                    // float[] outerRadii = {outRadius, outRadius, 0, 0, 0, 0, outRadius, outRadius};//左上x2,右上x2,右下x2,左下x2，注意顺序（顺时针依次设置）
+                    // int spaceBetOutAndInner = outRadius - innerRadius;//内外矩形间距
+                    // RectF inset = new RectF(spaceBetOutAndInner, spaceBetOutAndInner, spaceBetOutAndInner, spaceBetOutAndInner);
+                    // float[] innerRadii = {innerRadius, innerRadius, 0, 0, 0, 0, 0, 0};//内矩形 圆角半径
+                    // RoundRectShape roundRectShape = new RoundRectShape(outerRadii, inset, innerRadii);
+                    // ShapeDrawable shapeDrawable = new ShapeDrawable(roundRectShape);
+                    // // shapeDrawable.setColorFilter(colorPrimary, PorterDuff.Mode.CLEAR);
+                    // InsetDrawable insetDrawable = new InsetDrawable(shapeDrawable, 0, dp8, 0, dp8);
+                    // Button button = (Button)view;
+                     if (Build.VERSION.SDK_INT < 21) {
+                    //     button.setBackgroundDrawable(insetDrawable);
+                     } else {
+                    //     int [][] stats = new int[][]{{}};
+                    //     int [] color = new int[]{Color.parseColor("#f0f0f0")};
+                    //     ColorStateList colorStateList = new ColorStateList(stats, color);
+                    //     RippleDrawable rippleDrawable = new RippleDrawable(colorStateList, insetDrawable, new ColorDrawable(colorPrimary));
+                    //     button.setBackground(rippleDrawable);
+                         if (background instanceof RippleDrawable) {
+                             RippleDrawable rpd = (RippleDrawable) background;
+                             rpd.findDrawableByLayerId(0);
+
+                             int[][] stats = new int[][]{{}};
+                             int[] color = new int[]{Color.parseColor("#f0f0f0")};
+                             ColorStateList colorStateList = new ColorStateList(stats, color);
+                             rpd.setColor(colorStateList);
+                         }
+                     }
+
                 } else {
                     view.setBackgroundColor(colorPrimary);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -185,6 +235,9 @@ public class Utils {
                 } else if (view instanceof ProgressBar) {
                     ProgressBar progressBar = (ProgressBar) view;
 
+                } else if (view instanceof Button) {
+                    Button button = (Button) view;
+                    button.setTextColor(colorPrimary);
                 }
             }
 

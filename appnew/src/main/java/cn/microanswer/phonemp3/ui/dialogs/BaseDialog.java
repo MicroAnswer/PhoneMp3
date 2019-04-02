@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,7 +18,7 @@ import androidx.annotation.NonNull;
 import answer.android.phonemp3.R;
 import cn.microanswer.phonemp3.util.Utils;
 
-public abstract class BaseDialog extends Dialog implements View.OnClickListener, DialogInterface.OnShowListener {
+public abstract class BaseDialog extends Dialog implements View.OnClickListener, DialogInterface.OnShowListener, DialogInterface.OnDismissListener, DialogInterface.OnCancelListener {
     protected static int width = -1;
 
     /**
@@ -61,6 +62,8 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener,
         }
         mDialogTitle = dialogtitle;
         setTitle(dialogtitle);
+        setOnDismissListener(this);
+        setOnCancelListener(this);
     }
 
     @Override
@@ -119,6 +122,7 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener,
         }
         if (dis) {
             hide();
+            cancel();
         }
     }
 
@@ -163,4 +167,16 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener,
 
     @Override
     public void onShow(DialogInterface dialog) { }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        dismiss();
+        Log.i("onDismiss", this.toString());
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        dismiss();
+        Log.i("onCancel", this.toString());
+    }
 }

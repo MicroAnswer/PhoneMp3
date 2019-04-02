@@ -19,6 +19,7 @@
     <Button
         android:id="@+id/buttonScann"
         android:layout_width="wrap_content"
+        android:tag="@string/mtheme_background"
         android:text="@string/scannnow"
         android:layout_height="wrap_content"/>
 </LinearLayout>

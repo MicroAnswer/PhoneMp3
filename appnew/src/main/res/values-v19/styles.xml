@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="BaseTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="BaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <!-- 处理沉浸式状态栏和导航栏 - 让它们透明 -->
         <item name="android:windowTranslucentStatus">true</item>

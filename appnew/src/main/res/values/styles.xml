@@ -7,7 +7,7 @@
 
 
     <!-- Base application theme. -->
-    <style name="BaseTheme" parent="Theme.MaterialComponents.Light.NoActionBar"/>
+    <style name="BaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
 
     <style name="phonemp3Theme" parent="BaseTheme">
         <item name="colorPrimary">@color/colorPrimary</item>

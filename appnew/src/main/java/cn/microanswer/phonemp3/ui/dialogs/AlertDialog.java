@@ -16,11 +16,13 @@ public class AlertDialog extends BaseDialog {
     public AlertDialog(@NonNull Context context, String msg) {
         super(context);
         this.msg = msg;
+        setCanceledOnTouchOutside(true);
     }
 
     public AlertDialog(@NonNull Context context, String dialogtitle, String msg) {
         super(context, dialogtitle);
         this.msg = msg;
+        setCanceledOnTouchOutside(true);
     }
 
     @Override

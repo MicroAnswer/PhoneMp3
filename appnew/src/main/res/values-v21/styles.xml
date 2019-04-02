@@ -7,7 +7,7 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="BaseTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="BaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <!-- 处理沉浸式状态栏和导航栏 - 在 Android5.0 之后，让它们不透明，然后绘制透明的颜色 -->
         <item name="android:windowTranslucentStatus">false</item>

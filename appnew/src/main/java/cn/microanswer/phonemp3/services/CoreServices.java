@@ -653,10 +653,13 @@ public class CoreServices extends MediaBrowserServiceCompat implements
 
             @Override
             public Notification run(Music param) throws Exception {
+                if (param == null) {
+                    return null;
+                }
+                boolean isPlaying = mediaSession.getController().getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING;
                 String title = param.getTitle();
                 String desc = String.format("%s - %s", param.getArtist(), param.getAlbum());
                 String coverPath = param.getCoverPath();
-                boolean isPlaying = mediaSession.getController().getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING;
                 boolean isLoved = false; // 是否收藏的
 
                 Bitmap largeIcon = null;
@@ -724,6 +727,7 @@ public class CoreServices extends MediaBrowserServiceCompat implements
             @Override
             public void afterRun(Notification notify) {
                 super.afterRun(notify);
+                if (notify == null) return;
                 startForeground(NOTIGY_ID, notify);
                 if (!forground) {
                     stopForeground(false);
