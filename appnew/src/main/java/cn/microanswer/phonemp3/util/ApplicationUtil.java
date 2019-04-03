@@ -8,6 +8,7 @@ public class ApplicationUtil {
 
     /**
      * 获取当前app的版本号。
+     *
      * @param context
      * @return eg： 2.2.0
      */

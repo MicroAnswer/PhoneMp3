@@ -547,6 +547,7 @@ public class HttpUtil {
 
     /**
      * 向 microanswer.cn 发起请求
+     *
      * @param method
      * @param param
      */
@@ -581,11 +582,14 @@ public class HttpUtil {
 
     /**
      * 向 microanswer.cn 发起请求
+     *
      * @param method
      * @param param
      */
     public static void postCnMicroanswer(final String method, final Map<String, String> param, final HttpUtilListener l) {
-        if (null == l) { return; }
+        if (null == l) {
+            return;
+        }
 
         // 构建请求体
         try {
@@ -617,13 +621,13 @@ public class HttpUtil {
                     }
                     try {
                         l.onResponse(data);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         l.onError(e);
                     }
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
             l.onError(e);
         }
     }
@@ -632,8 +636,10 @@ public class HttpUtil {
     private interface Fun<A, B> {
         void d0fun(A a, B b) throws Exception;
     }
+
     public interface HttpUtilListener {
         void onResponse(JSONObject response) throws Exception;
+
         void onError(Exception e);
     }
 

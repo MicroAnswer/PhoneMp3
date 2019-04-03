@@ -4,10 +4,11 @@ import android.os.Bundle;
 
 import cn.microanswer.phonemp3.ui.Page;
 
-public interface Logic<P extends Page>{
+public interface Logic<P extends Page> {
 
     /**
      * 获取逻辑处理器对应的界面
+     *
      * @return
      */
     P getPage();

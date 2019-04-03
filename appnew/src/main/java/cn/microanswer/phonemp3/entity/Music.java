@@ -476,6 +476,7 @@ public class Music extends BaseModel implements Comparable<Music> {
 
     /**
      * 收藏 、 取消收藏 某首歌曲
+     *
      * @return -1 操作失败， 1 取消收藏成功， 2 收藏成功
      */
     public static int toggleLove(Music music) {

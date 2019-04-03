@@ -13,7 +13,7 @@ import cn.microanswer.phonemp3.services.MyMediaController;
 import cn.microanswer.phonemp3.ui.Page;
 import cn.microanswer.phonemp3.ui.activitys.PhoneMp3Activity;
 
-public abstract class BaseAnswer<P extends Page> implements Logic<P>,MyMediaController {
+public abstract class BaseAnswer<P extends Page> implements Logic<P>, MyMediaController {
     private P page;
 
     public BaseAnswer(P page) {
@@ -28,7 +28,8 @@ public abstract class BaseAnswer<P extends Page> implements Logic<P>,MyMediaCont
         return page.getPhoneMp3Activity();
     }
 
-    public void onResume() {}
+    public void onResume() {
+    }
 
     @Override
     public void onBrowserConnected() {

@@ -66,10 +66,10 @@ public class SettingHolder {
 
     public SettingHolder setColorPrimary(int colorPrimary) {
         checkInited();
-        try{
+        try {
             this.colorPrimary = colorPrimary;
             setObject.put("colorPrimary", this.colorPrimary);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             logger.e(e.getMessage());
         }
@@ -82,16 +82,17 @@ public class SettingHolder {
 
     public SettingHolder setDisplayIntroduction(boolean displayIntroduction) {
         checkInited();
-        try{
+        try {
             this.displayIntroduction = displayIntroduction;
             setObject.put("displayIntroduction", this.displayIntroduction);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             logger.e(e.getMessage());
         }
         return this;
     }
-    public boolean isDisplayIntroduction (){
+
+    public boolean isDisplayIntroduction() {
         return displayIntroduction;
     }
 
@@ -125,7 +126,8 @@ public class SettingHolder {
         if (setObject.has("isDayMode")) isDayMode = setObject.getBoolean("isDayMode");
         if (setObject.has("isNightMode")) isNightMode = setObject.getBoolean("isNightMode");
         if (setObject.has("colorPrimary")) colorPrimary = setObject.getInt("colorPrimary");
-        if (setObject.has("displayIntroduction")) displayIntroduction = setObject.getBoolean("displayIntroduction");
+        if (setObject.has("displayIntroduction"))
+            displayIntroduction = setObject.getBoolean("displayIntroduction");
 
         this.isInited = true;
     }
@@ -173,7 +175,10 @@ public class SettingHolder {
 
     // ================================================
     private static SettingHolder settingHolder;
-    private SettingHolder (){}
+
+    private SettingHolder() {
+    }
+
     public static SettingHolder getSettingHolder() {
         if (settingHolder == null) {
             settingHolder = new SettingHolder();

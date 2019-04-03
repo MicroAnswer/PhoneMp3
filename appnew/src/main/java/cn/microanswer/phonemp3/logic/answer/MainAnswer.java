@@ -230,7 +230,7 @@ public class MainAnswer extends BaseAnswer<MainPage> implements MainLogic {
         getPage().show(Main_MyLoveFragment.class);
     }
 
-    private void jumpToMyPlayList () {
+    private void jumpToMyPlayList() {
         getPage().show(Main_PlayListFragment.class);
     }
 

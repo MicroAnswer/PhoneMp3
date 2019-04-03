@@ -38,7 +38,7 @@ public class Main_AllMusicFragment extends BaseFragment<Main_AllMusicLogic> impl
 
         tabLayout.setupWithViewPager(viewPager, true);
         // AllMusicViewPageAdapter adapter;
-        if (viewPager.getAdapter() == null ){
+        if (viewPager.getAdapter() == null) {
             viewPager.setAdapter(new AllMusicViewPageAdapter(getChildFragmentManager()));
         }
 

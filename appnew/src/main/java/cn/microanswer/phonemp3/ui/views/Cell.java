@@ -150,7 +150,7 @@ public class Cell extends LinearLayout {
             return;
         }
         Drawable drawable1 = DrawableCompat.wrap(this.headHelper.drawableIcon).mutate();
-        DrawableCompat.setTint(drawable1,iconColor);
+        DrawableCompat.setTint(drawable1, iconColor);
         this.headHelper.iconView.setImageDrawable(drawable1);
     }
 

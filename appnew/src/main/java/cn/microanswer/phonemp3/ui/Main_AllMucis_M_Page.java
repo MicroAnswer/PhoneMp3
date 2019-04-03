@@ -13,7 +13,10 @@ public interface Main_AllMucis_M_Page extends Page<Main_AllMusic_M_Logic> {
 
     void setScanHint(String txt);
 
-    void showData(boolean anim,List<Music> data);
+    void showData(boolean anim, List<Music> data);
 
     void requestPermission(String[] ps);
+
+    // 某歌曲被删除后，调起该方法修改界面
+    void dataDeleted(int position);
 }

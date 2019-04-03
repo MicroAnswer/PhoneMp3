@@ -23,7 +23,7 @@ public interface Main_PlayListLogic extends Logic<Main_PlayListPage> {
          *
          * @param status   0 = 已存在，1=成功， 2=失败
          * @param playList 成功后有
-         * @param msg 失败后有
+         * @param msg      失败后有
          */
         void onComp(int status, PlayList playList, String msg);
     }

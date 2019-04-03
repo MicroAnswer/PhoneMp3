@@ -17,6 +17,7 @@ public interface Page<L extends Logic> {
 
     /**
      * 返回当前界面是否可见
+     *
      * @return
      */
     boolean mIsVisible();

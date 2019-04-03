@@ -57,7 +57,7 @@ public class WebFragment extends BaseFragment<WebLogic> implements WebPage {
 
         getPhoneMp3Activity().setSupportActionBar(toolbar);
         ActionBar actionBar = getPhoneMp3Activity().getSupportActionBar();
-        if ( null != actionBar) {
+        if (null != actionBar) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         initWebView();

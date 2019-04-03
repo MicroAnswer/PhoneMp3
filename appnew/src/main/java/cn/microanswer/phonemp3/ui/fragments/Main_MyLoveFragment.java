@@ -47,7 +47,7 @@ public class Main_MyLoveFragment extends BaseFragment<Main_MyLoveLogic> implemen
     }
 
     @Override
-    public void showData(boolean anim,List<Music> data) {
+    public void showData(boolean anim, List<Music> data) {
         musicListView.showData(anim, data);
     }
 

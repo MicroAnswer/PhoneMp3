@@ -42,7 +42,7 @@ public class Logger extends Handler {
             }
         }
         try {
-            bufferedWriter = new BufferedWriter(new FileWriter(file,true));
+            bufferedWriter = new BufferedWriter(new FileWriter(file, true));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,9 +55,18 @@ public class Logger extends Handler {
     public void i(String message) {
         logger.info(message);
     }
-    public void f(String message){logger.fine(message);}
-    public void w(String message){logger.warning(message);}
-    public void e(String message) {logger.severe(message);}
+
+    public void f(String message) {
+        logger.fine(message);
+    }
+
+    public void w(String message) {
+        logger.warning(message);
+    }
+
+    public void e(String message) {
+        logger.severe(message);
+    }
 
     @Override
     public void publish(final LogRecord record) {
@@ -65,7 +74,7 @@ public class Logger extends Handler {
         if (level.intValue() >= logger.getLevel().intValue()) {
             Task.TaskHelper.getInstance().run(new Task.ITask() {
                 @Override
-                public Object run(Object param) throws Exception{
+                public Object run(Object param) throws Exception {
                     synchronized (lock) {
                         Date date = new Date();
                         String le;

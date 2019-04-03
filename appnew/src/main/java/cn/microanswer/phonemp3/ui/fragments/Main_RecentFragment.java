@@ -52,7 +52,7 @@ public class Main_RecentFragment extends BaseFragment<Main_RecentLogic> implemen
     }
 
     @Override
-    public void showData(boolean anim,List<Music> data) {
+    public void showData(boolean anim, List<Music> data) {
         musicListView.showData(anim, data);
     }
 

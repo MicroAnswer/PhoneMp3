@@ -21,6 +21,7 @@ public class ConfirmDialog extends AlertDialog {
 
     /**
      * 设置点击确定按钮时的回调。
+     *
      * @param onClickListener
      * @return
      */
@@ -41,7 +42,7 @@ public class ConfirmDialog extends AlertDialog {
 
     @Override
     protected boolean onBtnSureClick() {
-        if (onClickListener!=null) {
+        if (onClickListener != null) {
             onClickListener.onClick(this, BUTTON_POSITIVE);
         }
         return super.onBtnSureClick();

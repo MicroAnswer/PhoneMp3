@@ -233,4 +233,9 @@ public class MusicListView extends FrameLayout implements MusicItemRecyclerViewA
         MusicItemRecyclerViewAdapter adapter = getAdapter();
         adapter.remove(value);
     }
+
+    public void remove(int position) {
+        MusicItemRecyclerViewAdapter adapter = getAdapter();
+        adapter.remove(position);
+    }
 }

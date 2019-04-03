@@ -63,7 +63,7 @@ public class MyPlayListRecyclerViewAdapter extends RecyclerView.Adapter<MyPlayLi
     }
 
     public void remove(int position) {
-        if (playLists!=null && playLists.size() > position) {
+        if (playLists != null && playLists.size() > position) {
             playLists.remove(position);
             notifyItemRemoved(position);
         }
@@ -110,6 +110,7 @@ public class MyPlayListRecyclerViewAdapter extends RecyclerView.Adapter<MyPlayLi
 
     public interface onMyPlayListItemClick {
         void onClickPlayListItem(int position, PlayList playList, View view);
+
         boolean onLongClickPlayListItem(int position, PlayList playList, View view);
     }
 }

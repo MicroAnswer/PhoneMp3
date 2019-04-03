@@ -20,7 +20,7 @@ import cn.microanswer.phonemp3.ui.Page;
 import cn.microanswer.phonemp3.ui.activitys.PhoneMp3Activity;
 import cn.microanswer.phonemp3.util.Logger;
 
-public abstract class BaseFragment<L extends Logic> extends Fragment implements OnBackPressedCallback,Page<L> {
+public abstract class BaseFragment<L extends Logic> extends Fragment implements OnBackPressedCallback, Page<L> {
 
     protected Logger logger = null;
     private L logic;
@@ -105,10 +105,12 @@ public abstract class BaseFragment<L extends Logic> extends Fragment implements 
             logger.w("Android SDK 版本过低，版本号：" + Build.VERSION.SDK_INT + ", 没有方法：View.requestFitSystemWindows()");
         }
     }
+
     @Override
     public boolean handleOnBackPressed() {
         return false;
     }
+
     @Override
     public Dialog alert(String msg) {
         if (isDestoryed) {

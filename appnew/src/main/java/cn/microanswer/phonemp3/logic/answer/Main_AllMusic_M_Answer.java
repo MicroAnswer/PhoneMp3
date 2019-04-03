@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import java.io.File;
 import java.util.List;
 
 import androidx.core.content.ContextCompat;
@@ -19,6 +20,7 @@ import answer.android.phonemp3.R;
 import cn.microanswer.phonemp3.ACTION;
 import cn.microanswer.phonemp3.Database;
 import cn.microanswer.phonemp3.entity.Music;
+import cn.microanswer.phonemp3.entity.Music_Table;
 import cn.microanswer.phonemp3.entity.PlayList;
 import cn.microanswer.phonemp3.entity.PlayList_Table;
 import cn.microanswer.phonemp3.logic.Main_AllMusic_M_Logic;
@@ -236,12 +238,6 @@ public class Main_AllMusic_M_Answer extends BaseAnswer<Main_AllMucis_M_Page> imp
             case R.id.share:
                 _share(music, position);
                 break;
-            case R.id.artist:
-                _artistDetail(music, position);
-                break;
-            case R.id.ablum:
-                _ablumDetail(music, position);
-                break;
             case R.id.detail:
                 _musicDetail(music, position);
                 break;
@@ -270,16 +266,6 @@ public class Main_AllMusic_M_Answer extends BaseAnswer<Main_AllMucis_M_Page> imp
 
     }
 
-    // 歌手
-    private void _artistDetail(Music music, int position) {
-
-    }
-
-    // 专辑
-    private void _ablumDetail(Music music, int position) {
-
-    }
-
     // 查看歌曲信息
     private void _musicDetail(Music music, int position) {
 
@@ -287,6 +273,47 @@ public class Main_AllMusic_M_Answer extends BaseAnswer<Main_AllMucis_M_Page> imp
 
     // 删除
     private void _delete(Music music, int position) {
+        Utils.UI.confirm(getPhoneMp3Activity(), getPhoneMp3Activity().getString(R.string.deleteMusicTip, music.getTitle()), null, (dialog, which) -> {
+            Task.TaskHelper.getInstance().run(new Task.ITask<Music, Boolean>() {
+                @Override
+                public Music getParam() {
+                    return music;
+                }
 
+                @Override
+                public Boolean run(Music param) throws Exception {
+
+                    String data = param.get_data();
+
+                    File file = new File(data);
+                    boolean delete = file.delete();
+
+                    if (delete) {
+                        long l = SQLite.delete(Music.class)
+                                .where(Music_Table._data.eq(data))
+                                .executeUpdateDelete();
+                        return 1L <= l;
+                    }
+                    return false;
+                }
+
+                @Override
+                public void afterRun(Boolean value) {
+                    super.afterRun(value);
+                    if (value != null && value) { //TODO 删除歌曲后需、、后续处理， 如果这首歌曲正在播放，应该播放下一曲。
+                        Utils.APP.sendBroadcast(getPhoneMp3Activity(), ACTION.MUSIC_DELETED, music.get_data());
+                        Toast.makeText(getPhoneMp3Activity(), getPhoneMp3Activity().getString(R.string.deleteSucess), Toast.LENGTH_SHORT).show();
+                        getPage().dataDeleted(position);
+                    } else {
+                        Toast.makeText(getPhoneMp3Activity(), getPhoneMp3Activity().getString(R.string.deleteFail), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    super.onError(e);
+                }
+            });
+        }).show();
     }
 }

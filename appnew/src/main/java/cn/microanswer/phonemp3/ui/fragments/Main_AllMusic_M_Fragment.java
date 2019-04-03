@@ -21,7 +21,7 @@ import cn.microanswer.phonemp3.ui.Main_AllMucis_M_Page;
 import cn.microanswer.phonemp3.ui.fragments.adapter.MusicItemRecyclerViewAdapter;
 import cn.microanswer.phonemp3.ui.views.MusicListView;
 
-public class  Main_AllMusic_M_Fragment extends BaseFragment<Main_AllMusic_M_Logic> implements Main_AllMucis_M_Page, View.OnClickListener, MusicItemRecyclerViewAdapter.OnItemClickListener {
+public class Main_AllMusic_M_Fragment extends BaseFragment<Main_AllMusic_M_Logic> implements Main_AllMucis_M_Page, View.OnClickListener, MusicItemRecyclerViewAdapter.OnItemClickListener {
     private final int PERMISION_CODE = 10000; // 本fragment权限请求码
 
 
@@ -82,6 +82,11 @@ public class  Main_AllMusic_M_Fragment extends BaseFragment<Main_AllMusic_M_Logi
     @Override
     public void requestPermission(String[] ps) {
         requestPermissions(ps, PERMISION_CODE);
+    }
+
+    @Override
+    public void dataDeleted(int position) {
+        musicListView.remove(position);
     }
 
     @Override

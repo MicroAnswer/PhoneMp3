@@ -9,7 +9,7 @@ public class API {
     /**
      * 方法
      */
-    public static final class METHOD{
+    public static final class METHOD {
         public static String GET_COVER = "getCover"; // 获取今日的封面
     }
 }

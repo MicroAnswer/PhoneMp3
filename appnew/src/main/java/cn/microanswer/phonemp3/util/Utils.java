@@ -8,17 +8,9 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.RippleDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
-import android.graphics.drawable.shapes.RoundRectShape;
-import android.graphics.drawable.shapes.Shape;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -184,24 +176,24 @@ public class Utils {
                     // // shapeDrawable.setColorFilter(colorPrimary, PorterDuff.Mode.CLEAR);
                     // InsetDrawable insetDrawable = new InsetDrawable(shapeDrawable, 0, dp8, 0, dp8);
                     // Button button = (Button)view;
-                     if (Build.VERSION.SDK_INT < 21) {
-                    //     button.setBackgroundDrawable(insetDrawable);
-                     } else {
-                    //     int [][] stats = new int[][]{{}};
-                    //     int [] color = new int[]{Color.parseColor("#f0f0f0")};
-                    //     ColorStateList colorStateList = new ColorStateList(stats, color);
-                    //     RippleDrawable rippleDrawable = new RippleDrawable(colorStateList, insetDrawable, new ColorDrawable(colorPrimary));
-                    //     button.setBackground(rippleDrawable);
-                         if (background instanceof RippleDrawable) {
-                             RippleDrawable rpd = (RippleDrawable) background;
-                             rpd.findDrawableByLayerId(0);
+                    if (Build.VERSION.SDK_INT < 21) {
+                        //     button.setBackgroundDrawable(insetDrawable);
+                    } else {
+                        //     int [][] stats = new int[][]{{}};
+                        //     int [] color = new int[]{Color.parseColor("#f0f0f0")};
+                        //     ColorStateList colorStateList = new ColorStateList(stats, color);
+                        //     RippleDrawable rippleDrawable = new RippleDrawable(colorStateList, insetDrawable, new ColorDrawable(colorPrimary));
+                        //     button.setBackground(rippleDrawable);
+                        if (background instanceof RippleDrawable) {
+                            RippleDrawable rpd = (RippleDrawable) background;
+                            rpd.findDrawableByLayerId(0);
 
-                             int[][] stats = new int[][]{{}};
-                             int[] color = new int[]{Color.parseColor("#f0f0f0")};
-                             ColorStateList colorStateList = new ColorStateList(stats, color);
-                             rpd.setColor(colorStateList);
-                         }
-                     }
+                            int[][] stats = new int[][]{{}};
+                            int[] color = new int[]{Color.parseColor("#f0f0f0")};
+                            ColorStateList colorStateList = new ColorStateList(stats, color);
+                            rpd.setColor(colorStateList);
+                        }
+                    }
 
                 } else {
                     view.setBackgroundColor(colorPrimary);
@@ -267,6 +259,7 @@ public class Utils {
         public static int getScreenHeight(Context context) {
             return getScreenSize(context).heightPixels;
         }
+
         public static int getScreenWidth(Context context) {
             return getScreenSize(context).widthPixels;
         }
@@ -296,8 +289,16 @@ public class Utils {
          * @param context
          * @param action
          */
+        public static void sendBroadcast(Context context, String action, String data) {
+            Intent intent = new Intent(action);
+            if (!COMMON.isNull(data)) {
+                intent.putExtra("data", data);
+            }
+            context.sendBroadcast(intent);
+        }
+
         public static void sendBroadcast(Context context, String action) {
-            context.sendBroadcast(new Intent(action));
+            sendBroadcast(context, action, null);
         }
 
         private static MediaMetadataCompat.Builder __mediametadataCompatBuilder;

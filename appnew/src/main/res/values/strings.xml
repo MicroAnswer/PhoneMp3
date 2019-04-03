@@ -71,6 +71,11 @@
     <string name="delete">删除</string>
     <string name="addToPlayList">添加到歌单</string>
     <string name="tip">提示</string>
+    <string name="nextplay">下一曲播放</string>
+    <string name="musicdetail">查看歌曲信息</string>
+    <string name="deleteMusicTip">【%s】删除后无法恢复，你确定要删除吗？</string>
+    <string name="deleteSucess">删除成功</string>
+    <string name="deleteFail">删除失败</string>
 
     <item name="refresh" type="id" />
 

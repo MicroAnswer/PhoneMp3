@@ -39,6 +39,7 @@ public interface PlayListService {
      * <pre>
      *     根据播放列表id删除某一个播放列表。
      * </pre>
+     *
      * @param playListId 播放列表id。
      * @return 是否删除成功。
      * @throws Exception 错误信息。
@@ -49,6 +50,7 @@ public interface PlayListService {
      * <pre>
      *     更新播放列表。
      * </pre>
+     *
      * @param playList 要跟新的播放列表。
      * @return 是否更新成功。
      * @throws Exception 错误信息。

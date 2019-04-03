@@ -73,8 +73,8 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener,
 
         mTextViewTitle = findViewById(R.id.mTextViewTitle);
         mDialogContent = findViewById(R.id.mDialogContent);
-        mButtonCancel  = findViewById(R.id.buttonCancel);
-        mButtonSure    = findViewById(R.id.buttonSure);
+        mButtonCancel = findViewById(R.id.buttonCancel);
+        mButtonSure = findViewById(R.id.buttonSure);
 
         if (!hasCancelBtn()) {
             mButtonCancel.setVisibility(View.INVISIBLE);
@@ -128,6 +128,7 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener,
 
     /**
      * 返回弹出框内容的 view
+     *
      * @param parent 父容器
      * @return
      */
@@ -135,12 +136,16 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener,
 
     /**
      * 返回true 则显示取消按钮
+     *
      * @return
      */
-    protected boolean hasCancelBtn() {return true;}
+    protected boolean hasCancelBtn() {
+        return true;
+    }
 
     /**
      * 返回确认按钮文案
+     *
      * @return
      */
     protected String getBtnSureTxt() {
@@ -149,6 +154,7 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener,
 
     /**
      * 返回取消按钮的文案。
+     *
      * @return
      */
     protected String getBtnCancelTxt() {
@@ -160,13 +166,15 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener,
     protected boolean onBtnCancelClick() {
         return true;
     }
+
     // 返回 true 弹出框会消失，返回 false 则不会消失。
     protected boolean onBtnSureClick() {
         return true;
     }
 
     @Override
-    public void onShow(DialogInterface dialog) { }
+    public void onShow(DialogInterface dialog) {
+    }
 
     @Override
     public void onDismiss(DialogInterface dialog) {
