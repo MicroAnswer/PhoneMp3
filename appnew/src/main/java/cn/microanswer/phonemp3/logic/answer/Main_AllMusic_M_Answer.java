@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.view.View;
 import android.widget.Toast;
@@ -124,8 +125,6 @@ public class Main_AllMusic_M_Answer extends BaseAnswer<Main_AllMucis_M_Page> imp
 
             }
         });
-
-
     }
 
     // private ResultReceiver scannerResultReceiver = null;
@@ -302,6 +301,12 @@ public class Main_AllMusic_M_Answer extends BaseAnswer<Main_AllMucis_M_Page> imp
                     super.afterRun(value);
                     if (value != null && value) { //TODO 删除歌曲后需、、后续处理， 如果这首歌曲正在播放，应该播放下一曲。
                         Utils.APP.sendBroadcast(getPhoneMp3Activity(), ACTION.MUSIC_DELETED, music.get_data());
+                        MediaControllerCompat.TransportControls transportControls = getPhoneMp3Activity().mGetMediaController().getTransportControls();
+                        if (null != transportControls) {
+                            Bundle bun = new Bundle();
+                            bun.putString("data", music.get_data());
+                            transportControls.sendCustomAction(ACTION.MUSIC_DELETED, bun);
+                        }
                         Toast.makeText(getPhoneMp3Activity(), getPhoneMp3Activity().getString(R.string.deleteSucess), Toast.LENGTH_SHORT).show();
                         getPage().dataDeleted(position);
                     } else {

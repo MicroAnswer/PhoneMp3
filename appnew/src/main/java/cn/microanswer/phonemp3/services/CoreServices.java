@@ -23,6 +23,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -100,6 +101,9 @@ public class CoreServices extends MediaBrowserServiceCompat implements
      * </pre>
      */
     private PlayList currentPlayList;
+
+    // 当前播放的歌曲在当前列表的下表位置。 0开始。
+    private int currentIndex;
 
     /**
      * <pre>
@@ -239,6 +243,8 @@ public class CoreServices extends MediaBrowserServiceCompat implements
                         }
                     }
                 });
+            } else if (ACTION.MUSIC_DELETED.equals(action)) {
+                onMusicDeleted(extras.getString("data"));
             }
 
         }
@@ -398,6 +404,30 @@ public class CoreServices extends MediaBrowserServiceCompat implements
         });
     }
 
+    // 当歌曲被删除时，该方法会调用。
+    private void onMusicDeleted(String musicFilePath) {
+        if (currentMusic != null) {
+            // 被删除的歌曲是下一曲要播放的歌曲，则去除。
+            if (nextMusic != null && nextMusic.get_data().equals(musicFilePath)) {
+                nextMusic = null;
+            }
+            if (currentMusic.get_data().equals(musicFilePath)) {
+                // 被删除的歌曲正好是正在播放的歌曲。那么播放下一曲。
+                playNext(false);
+            }
+            // 然后将删除的歌曲从播放列表里面去除。
+            if (currentPlayList != null) {
+                List<Music> musics = currentPlayList.getMusics();
+                for (int i = 0; i < musics.size(); i++) {
+                    Music music = musics.get(i);
+                    if (music.get_data().equals(musicFilePath)) {
+                        musics.remove(i);
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
     @Override
     public void onDestroy() {
@@ -450,6 +480,9 @@ public class CoreServices extends MediaBrowserServiceCompat implements
                 public void afterRun(List<Music> value) {
                     super.afterRun(value);
                     currentPlayList.setMusics(value);
+                    if (value != null) {
+                        currentIndex = value.indexOf(currentMusic);
+                    }
                 }
             });
         } else {
@@ -478,6 +511,9 @@ public class CoreServices extends MediaBrowserServiceCompat implements
                     public void afterRun(List<Music> value) {
                         super.afterRun(value);
                         currentPlayList.setMusics(value);
+                        if (value != null) {
+                            currentIndex = value.indexOf(currentMusic);
+                        }
                     }
                 });
 
@@ -505,11 +541,7 @@ public class CoreServices extends MediaBrowserServiceCompat implements
                 if (value == null) { // 下一曲没有歌曲可播放了。
                     logger.i("在将要播放下一曲时，发现下一曲没有了");
 
-                    // 关闭服务前台
-                    sendNotify(currentMusic, false);
-
-                    // 改变session状态
-                    mediaSession.setPlaybackState(_newState(PlaybackStateCompat.STATE_PAUSED));
+                    pause();
 
                 } else {
                     logger.i("在将要播放下一曲时，正常播放下一曲");
@@ -809,6 +841,10 @@ public class CoreServices extends MediaBrowserServiceCompat implements
             }
         });
 
+        if (currentPlayList != null) {
+            currentIndex = currentPlayList.getMusics().indexOf(currentMusic);
+        }
+
         // 进行播放
         mp.start();
 
@@ -875,12 +911,18 @@ public class CoreServices extends MediaBrowserServiceCompat implements
 
 
         List<Music> musics = currentPlayList.getMusics();
-
-        int i = musics.indexOf(currentMusic);
-
         // 播放列表为空。播完这首下一首就别播放了
-        if (i < 0) {
+        if (musics == null || musics.size() <= 0) {
             return null;
+        }
+
+        int i = currentIndex;
+
+        if (musics.indexOf(currentMusic) == -1) {
+            // 如果当前播放的歌曲已经不在播放列表里面，说明这首歌曲是被删除了。那么顺序也让其减1
+            i -= 1;
+            if (i < 0) i=0;
+            if (i >= musics.size()) i = musics.size() - 1;
         }
 
         // 播放列表不为空，根据播放方式选择下一首歌曲
@@ -894,7 +936,8 @@ public class CoreServices extends MediaBrowserServiceCompat implements
             // 列表播放
             if (shuffleMode == PlaybackStateCompat.SHUFFLE_MODE_ALL) {
                 // 随机播放
-                return musics.get(RANDOM.nextInt(musics.size()));
+                int i1 = RANDOM.nextInt(musics.size());
+                return musics.get(i1);
             } else {
                 if (1 + i < musics.size()) {
                     return musics.get(i + 1);
