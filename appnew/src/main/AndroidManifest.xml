@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name="cn.microanswer.phonemp3.services.CoreServices"/>
+        <service android:name="cn.microanswer.phonemp3.services.CoreServices1"/>
 
     </application>
 

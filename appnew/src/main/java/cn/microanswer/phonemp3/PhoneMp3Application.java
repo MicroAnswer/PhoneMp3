@@ -30,13 +30,7 @@ public class PhoneMp3Application extends Application {
         logger = new Logger(PhoneMp3Application.class);
 
         // 初始化设置值
-        Task.TaskHelper.getInstance().run(new Task.ITask<Object, Object>() {
-            @Override
-            public Object run(Object param) throws Exception {
-                SettingHolder.getSettingHolder().init();
-                return null;
-            }
-        });
+        SettingHolder.getSettingHolder().init(PhoneMp3Application.this);
 
         // 设定程序崩溃时异常搜集
         CrashHandler crashHandler = new CrashHandler();

@@ -48,7 +48,7 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
         mediaPlayer.setOnPreparedListener(mediaPlayerListener);
 
         // 初始化会话
-        mediaSession = new MediaSessionCompat(this, "CoreServices");
+        mediaSession = new MediaSessionCompat(this, "CoreServices1");
         mediaSession.setCallback(new MMediaSessionCallBack());
         mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
         mediaSession.setRepeatMode(PlaybackStateCompat.REPEAT_MODE_NONE); // 按顺序列表播放，播放完不重复播放

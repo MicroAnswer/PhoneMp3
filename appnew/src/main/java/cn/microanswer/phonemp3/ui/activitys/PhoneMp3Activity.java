@@ -33,7 +33,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import answer.android.phonemp3.BuildConfig;
 import answer.android.phonemp3.R;
-import cn.microanswer.phonemp3.services.CoreServices;
+import cn.microanswer.phonemp3.services.CoreServices1;
 import cn.microanswer.phonemp3.services.MyMediaController;
 import cn.microanswer.phonemp3.ui.fragments.BaseFragment;
 import cn.microanswer.phonemp3.ui.fragments.IndexFragment;
@@ -110,7 +110,7 @@ public class PhoneMp3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // 开启服务
         Intent intent = new Intent();
-        ComponentName componentName = new ComponentName(this, CoreServices.class);
+        ComponentName componentName = new ComponentName(this, CoreServices1.class);
         intent.setComponent(componentName);
         startService(intent);
 
@@ -170,7 +170,7 @@ public class PhoneMp3Activity extends AppCompatActivity {
 
         // 创建音乐资源客户端
         // ComponentName componentName =
-        //         new ComponentName(PhoneMp3Activity.this, CoreServices.class);
+        //         new ComponentName(PhoneMp3Activity.this, CoreServices1.class);
         mediaBrowser = new MediaBrowserCompat(PhoneMp3Activity.this, componentName,
                 connectionCallback, null);
         mediaBrowser.connect();

@@ -28,7 +28,7 @@ public class ACTION {
     public final static String THEME_COLOR_CHANGE = "cn.microanswer.themechange";
 
     /**
-     * 设置当前正在播放的歌曲。 MainAnswer.java 第91 行使用 和 CoreServices.java 第199行左右使用
+     * 设置当前正在播放的歌曲。 MainAnswer.java 第91 行使用 和 CoreServices1.java 第199行左右使用
      */
     public static final String SET_CURRENT_MUSIC = "cn.microanswer.setcurrentmusic";
 

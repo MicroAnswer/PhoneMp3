@@ -23,7 +23,6 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -52,13 +51,13 @@ import cn.microanswer.phonemp3.util.Utils;
  * 音乐播放服务
  */
 @Deprecated
-public class CoreServices extends MediaBrowserServiceCompat implements
+public class CoreServices1 extends MediaBrowserServiceCompat implements
         MediaPlayer.OnPreparedListener,
         MediaPlayer.OnCompletionListener,
         MediaPlayer.OnErrorListener {
 
     // 日志记录器
-    private final static Logger logger = Logger.getLogger(CoreServices.class);
+    private final static Logger logger = Logger.getLogger(CoreServices1.class);
 
     // 播放歌曲时会将服务设置为前台服务，此字段是通知的id.
     private final static int NOTIGY_ID = 10001;
@@ -142,7 +141,7 @@ public class CoreServices extends MediaBrowserServiceCompat implements
         @Override
         public void onPlay() {
             super.onPlay();
-            CoreServices.this.start();
+            CoreServices1.this.start();
         }
 
         /**
@@ -153,7 +152,7 @@ public class CoreServices extends MediaBrowserServiceCompat implements
         @Override
         public void onPause() {
             super.onPause();
-            CoreServices.this.pause();
+            CoreServices1.this.pause();
         }
 
         /**
@@ -320,7 +319,7 @@ public class CoreServices extends MediaBrowserServiceCompat implements
         player.setOnErrorListener(this); // 出错监听
 
         // 初始化会话
-        mediaSession = new MediaSessionCompat(this, "CoreServices");
+        mediaSession = new MediaSessionCompat(this, "CoreServices1");
         mediaSession.setCallback(mediaSessionCallBack);
         mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
         mediaSession.setPlaybackState(_newState(PlaybackStateCompat.STATE_NONE));
@@ -399,7 +398,7 @@ public class CoreServices extends MediaBrowserServiceCompat implements
                     mediaSession.setMetadata(Utils.APP.music2MetaData(currentMusic));
                 } else {
                     // 操作失败
-                    Toast.makeText(CoreServices.this, "操作失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CoreServices1.this, "操作失败", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -666,7 +665,7 @@ public class CoreServices extends MediaBrowserServiceCompat implements
     }
 
     private PendingIntent _PendingIntent(String action) {
-        final ComponentName serviceName = new ComponentName(this, CoreServices.class);
+        final ComponentName serviceName = new ComponentName(this, CoreServices1.class);
         Intent intent = new Intent(action);
         intent.setComponent(serviceName);
 
@@ -710,14 +709,14 @@ public class CoreServices extends MediaBrowserServiceCompat implements
                 isLoved = music != null;
                 // MediaControllerCompat controller = mediaSession.getController();
 
-                // ComponentName serviceName = new ComponentName(CoreServices.this, PhoneMp3Activity.class);
-                Intent intent = new Intent(CoreServices.this, PhoneMp3Activity.class);
+                // ComponentName serviceName = new ComponentName(CoreServices1.this, PhoneMp3Activity.class);
+                Intent intent = new Intent(CoreServices1.this, PhoneMp3Activity.class);
                 intent.putExtra("skipIndex", "true");
                 // intent.setComponent(serviceName);
 
-                PendingIntent activity = PendingIntent.getActivity(CoreServices.this, 0, intent, 0);
+                PendingIntent activity = PendingIntent.getActivity(CoreServices1.this, 0, intent, 0);
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(CoreServices.this, "musicPlay");
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(CoreServices1.this, "musicPlay");
                 builder.setSmallIcon(R.drawable.notify_);
                 builder.setLargeIcon(largeIcon);
                 builder.setContentTitle(title);
