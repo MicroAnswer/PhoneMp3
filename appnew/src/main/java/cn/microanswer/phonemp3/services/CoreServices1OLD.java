@@ -51,13 +51,13 @@ import cn.microanswer.phonemp3.util.Utils;
  * 音乐播放服务
  */
 @Deprecated
-public class CoreServices1 extends MediaBrowserServiceCompat implements
+public class CoreServices1OLD extends MediaBrowserServiceCompat implements
         MediaPlayer.OnPreparedListener,
         MediaPlayer.OnCompletionListener,
         MediaPlayer.OnErrorListener {
 
     // 日志记录器
-    private final static Logger logger = Logger.getLogger(CoreServices1.class);
+    private final static Logger logger = Logger.getLogger(CoreServices1OLD.class);
 
     // 播放歌曲时会将服务设置为前台服务，此字段是通知的id.
     private final static int NOTIGY_ID = 10001;
@@ -141,7 +141,7 @@ public class CoreServices1 extends MediaBrowserServiceCompat implements
         @Override
         public void onPlay() {
             super.onPlay();
-            CoreServices1.this.start();
+            CoreServices1OLD.this.start();
         }
 
         /**
@@ -152,7 +152,7 @@ public class CoreServices1 extends MediaBrowserServiceCompat implements
         @Override
         public void onPause() {
             super.onPause();
-            CoreServices1.this.pause();
+            CoreServices1OLD.this.pause();
         }
 
         /**
@@ -398,7 +398,7 @@ public class CoreServices1 extends MediaBrowserServiceCompat implements
                     mediaSession.setMetadata(Utils.APP.music2MetaData(currentMusic));
                 } else {
                     // 操作失败
-                    Toast.makeText(CoreServices1.this, "操作失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CoreServices1OLD.this, "操作失败", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -665,7 +665,7 @@ public class CoreServices1 extends MediaBrowserServiceCompat implements
     }
 
     private PendingIntent _PendingIntent(String action) {
-        final ComponentName serviceName = new ComponentName(this, CoreServices1.class);
+        final ComponentName serviceName = new ComponentName(this, CoreServices1OLD.class);
         Intent intent = new Intent(action);
         intent.setComponent(serviceName);
 
@@ -710,13 +710,13 @@ public class CoreServices1 extends MediaBrowserServiceCompat implements
                 // MediaControllerCompat controller = mediaSession.getController();
 
                 // ComponentName serviceName = new ComponentName(CoreServices1.this, PhoneMp3Activity.class);
-                Intent intent = new Intent(CoreServices1.this, PhoneMp3Activity.class);
+                Intent intent = new Intent(CoreServices1OLD.this, PhoneMp3Activity.class);
                 intent.putExtra("skipIndex", "true");
                 // intent.setComponent(serviceName);
 
-                PendingIntent activity = PendingIntent.getActivity(CoreServices1.this, 0, intent, 0);
+                PendingIntent activity = PendingIntent.getActivity(CoreServices1OLD.this, 0, intent, 0);
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(CoreServices1.this, "musicPlay");
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(CoreServices1OLD.this, "musicPlay");
                 builder.setSmallIcon(R.drawable.notify_);
                 builder.setLargeIcon(largeIcon);
                 builder.setContentTitle(title);

@@ -33,7 +33,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import answer.android.phonemp3.BuildConfig;
 import answer.android.phonemp3.R;
-import cn.microanswer.phonemp3.services.CoreServices1;
+import cn.microanswer.phonemp3.services.CoreServices2;
 import cn.microanswer.phonemp3.services.MyMediaController;
 import cn.microanswer.phonemp3.ui.fragments.BaseFragment;
 import cn.microanswer.phonemp3.ui.fragments.IndexFragment;
@@ -110,7 +110,7 @@ public class PhoneMp3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // 开启服务
         Intent intent = new Intent();
-        ComponentName componentName = new ComponentName(this, CoreServices1.class);
+        ComponentName componentName = new ComponentName(this, CoreServices2.class);
         intent.setComponent(componentName);
         startService(intent);
 
@@ -160,7 +160,7 @@ public class PhoneMp3Activity extends AppCompatActivity {
 
             // 如果打开界面时提供了跳过logo界面的指令，则直接显示主界面。
             String skipIndex = getIntent().getStringExtra("skipIndex");
-            if ("true".equals(skipIndex)) {
+            if ("true".equals(skipIndex) || CoreServices2.isPlaying) {
                 push(MainFragment.class);
             } else {
                 // 否则，默认展示 logo 界面。

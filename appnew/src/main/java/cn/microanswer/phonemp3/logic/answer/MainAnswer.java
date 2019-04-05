@@ -126,6 +126,9 @@ public class MainAnswer extends BaseAnswer<MainPage> implements MainLogic {
 
             @Override
             public Object[] run(MediaMetadataCompat param) throws Exception {
+                if (param == null) {
+                    return null;
+                }
                 Object[] r = new Object[2];
                 Music m = Utils.APP.metaData2Music(param);
                 r[0] = m;
@@ -136,9 +139,13 @@ public class MainAnswer extends BaseAnswer<MainPage> implements MainLogic {
             @Override
             public void afterRun(Object[] object) {
                 super.afterRun(object);
+                if (object == null) {
+                    getPage().updateControllerInfo(null, null, null, false);
+                    return;
+                }
                 Music value = (Music) object[0];
                 boolean love = (boolean) object[1];
-                getPage().updateControllerInfo(value.getCoverPath(), value.getTitle(), String.format("%s - %s", value.getArtist(), value.getAlbum()), love);
+                getPage().updateControllerInfo(value.getCoverPath(), value.getTitle(), String.format("%s-%s", value.getArtist(), value.getAlbum()), love);
             }
         });
     }
@@ -189,6 +196,13 @@ public class MainAnswer extends BaseAnswer<MainPage> implements MainLogic {
 
     @Override
     public void onExitClick() {
+        try {
+            MediaControllerCompat mediaControllerCompat = getPhoneMp3Activity().mGetMediaController();
+            MediaControllerCompat.TransportControls transportControls = mediaControllerCompat.getTransportControls();
+            transportControls.sendCustomAction(ACTION.EXIT, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         getPhoneMp3Activity().finish();
     }
 
@@ -215,7 +229,27 @@ public class MainAnswer extends BaseAnswer<MainPage> implements MainLogic {
     public void onPausePlayClick() {
         MediaControllerCompat mediaControllerCompat = getPhoneMp3Activity().mGetMediaController();
         MediaControllerCompat.TransportControls transportControls = mediaControllerCompat.getTransportControls();
-        if (mediaControllerCompat.getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING) {
+        if (mediaControllerCompat.getPlaybackState().getState() == PlaybackStateCompat.STATE_NONE) {
+            // 初始化状态，要完成播放，需要传入要播放的歌曲。
+            Task.TaskHelper.getInstance().run(new Task.ITask<Object, Music>() {
+                @Override
+                public Music run(Object param) throws Exception {
+                    Config config = SQLite.select().from(Config.class)
+                            .where(Config_Table._Key.eq(Database.CONFIG_LASTPLAYMUSIC_KEY)).querySingle();
+                    if (config != null && !TextUtils.isEmpty(config.getValue())) {
+                        final String musicStr = config.getValue();
+                        return JSON.parseObject(musicStr, Music.class);
+                    }
+                    return null;
+                }
+
+                @Override
+                public void afterRun(Music value) {
+                    super.afterRun(value);
+                    transportControls.playFromMediaId(ACTION.NONE_ID, Utils.APP.music2Bundle(value));
+                }
+            });
+        } else if (mediaControllerCompat.getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING) {
             transportControls.pause();
         } else {
             transportControls.play();

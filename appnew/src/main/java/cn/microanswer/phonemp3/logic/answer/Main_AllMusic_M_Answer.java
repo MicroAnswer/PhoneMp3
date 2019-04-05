@@ -283,15 +283,14 @@ public class Main_AllMusic_M_Answer extends BaseAnswer<Main_AllMucis_M_Page> imp
                 public Boolean run(Music param) throws Exception {
 
                     String data = param.get_data();
+                    long l = SQLite.delete(Music.class)
+                            .where(Music_Table._data.eq(data))
+                            .executeUpdateDelete();
+                    boolean databaseDeleteSuccess = 1L <= l;
 
-                    File file = new File(data);
-                    boolean delete = file.delete();
-
-                    if (delete) {
-                        long l = SQLite.delete(Music.class)
-                                .where(Music_Table._data.eq(data))
-                                .executeUpdateDelete();
-                        return 1L <= l;
+                    if (databaseDeleteSuccess) {
+                        File file = new File(data);
+                        return file.delete();
                     }
                     return false;
                 }
@@ -303,9 +302,7 @@ public class Main_AllMusic_M_Answer extends BaseAnswer<Main_AllMucis_M_Page> imp
                         Utils.APP.sendBroadcast(getPhoneMp3Activity(), ACTION.MUSIC_DELETED, music.get_data());
                         MediaControllerCompat.TransportControls transportControls = getPhoneMp3Activity().mGetMediaController().getTransportControls();
                         if (null != transportControls) {
-                            Bundle bun = new Bundle();
-                            bun.putString("data", music.get_data());
-                            transportControls.sendCustomAction(ACTION.MUSIC_DELETED, bun);
+                            transportControls.sendCustomAction(ACTION.MUSIC_DELETED, Utils.APP.music2Bundle(music));
                         }
                         Toast.makeText(getPhoneMp3Activity(), getPhoneMp3Activity().getString(R.string.deleteSucess), Toast.LENGTH_SHORT).show();
                         getPage().dataDeleted(position);

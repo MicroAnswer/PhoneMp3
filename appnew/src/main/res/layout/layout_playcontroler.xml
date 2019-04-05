@@ -55,7 +55,6 @@
                 android:id="@+id/textviewMusicdesc"
                 android:textSize="14sp"
                 android:textColor="?android:textColorSecondary"
-                android:text="@string/microanswer"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 

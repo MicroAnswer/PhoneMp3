@@ -49,7 +49,7 @@ public class SettingHolder {
     }
 
     public boolean isDisplayIntroduction() {
-        return sharedPreferences.getBoolean("isDisplayIntroduction", false);
+        return sharedPreferences.getBoolean("isDisplayIntroduction", true);
     }
 
     public void commit() {

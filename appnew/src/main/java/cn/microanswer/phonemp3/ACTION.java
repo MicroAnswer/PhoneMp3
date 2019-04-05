@@ -41,6 +41,10 @@ public class ACTION {
      * 歌曲被删除的通知
      */
     public static final String MUSIC_DELETED = "cn.microanswer.deletedmusic";
+    public static final String DIS_LOVE = "cn.microanswer.dislove";
+    public static final String LOVE = "cn.microanswer.love";
+    public static final String NONE_ID = "cn.microanswer.noneid";
+    public static final String EXIT = "cn.microanswer.exit";
 
     public static class NOTIFICATION {
         /**

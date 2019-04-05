@@ -21,6 +21,6 @@ public class IntroductionAnswer extends BaseAnswer<IntroductionPage> implements 
     public void jumpToMain() {
         getPhoneMp3Activity().replace(MainFragment.class);
 
-        SettingHolder.getSettingHolder().setDisplayIntroduction(false).commit(); // 点击了引导界面的确认， 下次不再显示引导界面
+        SettingHolder.getSettingHolder().setDisplayIntroduction(false); // 点击了引导界面的确认， 下次不再显示引导界面
     }
 }

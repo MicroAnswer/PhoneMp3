@@ -89,6 +89,37 @@
 
         </cn.microanswer.phonemp3.ui.views.Cell>
 
+
+        <cn.microanswer.phonemp3.ui.views.Cell
+            android:id="@+id/cellFeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_list_item_style"
+            android:paddingBottom="@dimen/setItemPaddingTB"
+            android:paddingLeft="@dimen/setItemPaddingLR"
+            android:paddingRight="@dimen/setItemPaddingLR"
+            android:paddingTop="@dimen/setItemPaddingTB"
+            app:icon="@drawable/icon_feedback"
+            android:tag="@string/mtheme_color"
+            app:titLe="反馈建议" >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:tag="@string/mtheme_color"
+                android:src="@drawable/icon_right"
+                android:layout_height="25dp" />
+        </cn.microanswer.phonemp3.ui.views.Cell>
+
+    </cn.microanswer.phonemp3.ui.views.Group>
+
+    <cn.microanswer.phonemp3.ui.views.Group
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="@string/mtheme_color"
+        app:title="实验室"
+        app:titleBackground="@color/linecolor"
+        app:titleColor="@color/colorPrimary">
+
         <cn.microanswer.phonemp3.ui.views.Cell
             android:layout_width="match_parent"
             android:background="@drawable/my_list_item_style"
@@ -112,7 +143,29 @@
         </cn.microanswer.phonemp3.ui.views.Cell>
 
         <cn.microanswer.phonemp3.ui.views.Cell
-            android:id="@+id/cellFeed"
+            android:layout_width="match_parent"
+            android:background="@drawable/my_list_item_style"
+            android:paddingBottom="@dimen/setItemPaddingTB"
+            android:id="@+id/cellLog"
+            android:paddingTop="@dimen/setItemPaddingTB"
+            app:icon="@drawable/ic_log"
+            android:paddingLeft="@dimen/setItemPaddingLR"
+            android:paddingRight="@dimen/setItemPaddingLR"
+            android:tag="@string/mtheme_color"
+            app:titLe="日志查看"
+            app:underLine="1px"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:tag="@string/mtheme_color"
+                android:src="@drawable/icon_right"
+                android:layout_height="25dp" />
+
+        </cn.microanswer.phonemp3.ui.views.Cell>
+
+        <cn.microanswer.phonemp3.ui.views.Cell
+            android:id="@+id/cellGithub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/my_list_item_style"
@@ -120,9 +173,10 @@
             android:paddingLeft="@dimen/setItemPaddingLR"
             android:paddingRight="@dimen/setItemPaddingLR"
             android:paddingTop="@dimen/setItemPaddingTB"
-            app:icon="@drawable/icon_feedback"
+            app:underLine="1px"
+            app:icon="@drawable/ic_github"
             android:tag="@string/mtheme_color"
-            app:titLe="反馈建议" >
+            app:titLe="Github" >
 
             <ImageView
                 android:layout_width="25dp"

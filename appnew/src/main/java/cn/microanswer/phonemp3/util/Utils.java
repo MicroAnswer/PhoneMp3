@@ -304,6 +304,9 @@ public class Utils {
         private static MediaMetadataCompat.Builder __mediametadataCompatBuilder;
 
         public static MediaMetadataCompat music2MetaData(Music music) {
+            if (music == null) {
+                return null;
+            }
             if (__mediametadataCompatBuilder == null) {
                 __mediametadataCompatBuilder = new MediaMetadataCompat.Builder();
             }
@@ -317,6 +320,9 @@ public class Utils {
         }
 
         public static Bundle music2Bundle(Music music) {
+            if (music == null) {
+                return null;
+            }
             Bundle b = new Bundle();
             b.putString("music", JSON.toJSONString(music));
             return b;

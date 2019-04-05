@@ -68,7 +68,9 @@ public class SetFragment extends BaseFragment<SetLogic> implements SetPage, View
         findViewById(R.id.cellSetItemThemeColor).setOnClickListener(this);
         findViewById(R.id.cellCheckUpdate).setOnClickListener(this);
         findViewById(R.id.cellCodeUse).setOnClickListener(this);
+        findViewById(R.id.cellGithub).setOnClickListener(this);
         findViewById(R.id.cellFeed).setOnClickListener(this);
+        findViewById(R.id.cellLog).setOnClickListener(this);
 
         getLogic().onPageCreated(savedInstanceState, getArguments());
     }

@@ -38,7 +38,7 @@
     <string name="alert">提示</string>
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
-    <string name="changeThemeColorTip">自定义颜色将退出夜间模式，确定要退出夜间模式吗？</string>
+    <string name="changeThemeColorTip">修改主题颜色将退出夜间模式，确定要退出夜间模式吗？</string>
     <string name="no_view">no view</string>
 
     <string name="mtheme_background">mtheme_background</string>

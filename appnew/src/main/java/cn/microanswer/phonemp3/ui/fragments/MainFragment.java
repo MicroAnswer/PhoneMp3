@@ -18,10 +18,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import answer.android.phonemp3.R;
+import cn.microanswer.phonemp3.entity.Music;
 import cn.microanswer.phonemp3.logic.MainLogic;
 import cn.microanswer.phonemp3.logic.answer.MainAnswer;
 import cn.microanswer.phonemp3.ui.MainPage;
 import cn.microanswer.phonemp3.ui.views.Cell;
+import cn.microanswer.phonemp3.util.Task;
 import cn.microanswer.phonemp3.util.Utils;
 
 /**
@@ -205,7 +207,17 @@ public class MainFragment extends BaseFragment<MainLogic> implements MainPage,
 
     @Override
     public void updateControllerInfo(String coverPath, String title, String desc, boolean love) {
-        Glide.with(this).load(coverPath).into(imageViewCover);
+        if (coverPath == null) {
+            Glide.with(this).load(R.drawable.icon_ablem).into(imageViewCover);
+        } else {
+            Glide.with(this).load(coverPath).into(imageViewCover);
+        }
+        if (title == null) {
+            title = getString(R.string.app_name);
+        }
+        if (desc == null) {
+            desc = "";
+        }
         textviewMusicTitle.setText(title);
         textviewMusicDesc.setText(desc);
         if (love) {
@@ -270,7 +282,6 @@ public class MainFragment extends BaseFragment<MainLogic> implements MainPage,
         } else {
             resource = R.drawable.icon_play;
         }
-
         imageviewPausePlay.setImageDrawable(Utils.UI.tintResourceWithThemeColor(getPhoneMp3Activity(), resource));
     }
 }
