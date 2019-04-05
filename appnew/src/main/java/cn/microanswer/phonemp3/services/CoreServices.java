@@ -51,6 +51,7 @@ import cn.microanswer.phonemp3.util.Utils;
 /**
  * 音乐播放服务
  */
+@Deprecated
 public class CoreServices extends MediaBrowserServiceCompat implements
         MediaPlayer.OnPreparedListener,
         MediaPlayer.OnCompletionListener,

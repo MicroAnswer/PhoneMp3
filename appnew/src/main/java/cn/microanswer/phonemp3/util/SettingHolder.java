@@ -1,5 +1,6 @@
 package cn.microanswer.phonemp3.util;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
 
@@ -132,7 +133,7 @@ public class SettingHolder {
         this.isInited = true;
     }
 
-    public void init() {
+    public void init(Context context) {
         this.logger = Logger.getLogger(getClass());
 
         try {

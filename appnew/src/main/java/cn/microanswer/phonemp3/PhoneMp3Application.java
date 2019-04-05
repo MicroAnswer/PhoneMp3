@@ -9,6 +9,7 @@ import java.io.File;
 import cn.microanswer.phonemp3.util.CrashHandler;
 import cn.microanswer.phonemp3.util.Logger;
 import cn.microanswer.phonemp3.util.SettingHolder;
+import cn.microanswer.phonemp3.util.Task;
 import cn.microanswer.phonemp3.util.Utils;
 
 public class PhoneMp3Application extends Application {
@@ -29,7 +30,13 @@ public class PhoneMp3Application extends Application {
         logger = new Logger(PhoneMp3Application.class);
 
         // 初始化设置值
-        SettingHolder.getSettingHolder().init();
+        Task.TaskHelper.getInstance().run(new Task.ITask<Object, Object>() {
+            @Override
+            public Object run(Object param) throws Exception {
+                SettingHolder.getSettingHolder().init();
+                return null;
+            }
+        });
 
         // 设定程序崩溃时异常搜集
         CrashHandler crashHandler = new CrashHandler();
