@@ -1,0 +1,10 @@
+package cn.microanswer.phonemp3.logic;
+
+import cn.microanswer.phonemp3.ui.LogPage;
+
+public interface LogLogic extends Logic<LogPage> {
+
+    // 当刷新按钮点击时调用
+    // 此方法应该加载日志并显示。
+    void onRefreshClick();
+}

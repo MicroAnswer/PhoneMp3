@@ -152,7 +152,7 @@
             android:paddingLeft="@dimen/setItemPaddingLR"
             android:paddingRight="@dimen/setItemPaddingLR"
             android:tag="@string/mtheme_color"
-            app:titLe="日志查看"
+            app:titLe="@string/seelog"
             app:underLine="1px"
             android:layout_height="wrap_content">
 

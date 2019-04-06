@@ -76,6 +76,10 @@
     <string name="deleteMusicTip">【%s】删除后无法恢复，你确定要删除吗？</string>
     <string name="deleteSucess">删除成功</string>
     <string name="deleteFail">删除失败</string>
+    <string name="github">https://github.com/MicroAnswer/PhoneMp3</string>
+    <string name="seelog">查看日志</string>
+    <string name="nologfound">暂时还没有找到任何日志记录文件</string>
+    <string name="clearLog">清空日志</string>
 
     <item name="refresh" type="id" />
 

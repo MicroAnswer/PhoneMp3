@@ -82,6 +82,10 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
     // 用户设定的下一曲要播放的歌曲。此字段只有用户显示的设置了才会有值，程序不会自动赋值。
     private Music nextMusic;
 
+    // 当用户删除某一首歌曲时，同时这首歌曲又是正在播放的歌曲，那么此字段将被赋值，待下一首歌曲成功播放时，会删除
+    // 此字段，并将列表中该歌曲移除。
+    private Music shouldDeleteMusic;
+
     // 服务创建时调用。
     @Override
     public void onCreate() {
@@ -438,6 +442,7 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
         if (mediaSessionCompat.getController().getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING) {
             // 删除的歌曲正在播放。
             // 则播放下一曲
+            this.shouldDeleteMusic = music;
             onSkipToNext();
         } else {
             if (currentMusic != null && currentMusic.equals(music)) {
@@ -447,16 +452,11 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
             dispachStateChange(PlaybackStateCompat.STATE_PAUSED);
             // 移除通知
             stopForeground(true);
-        }
-        getTaskHelper().runAfter(new Runnable() {
-            @Override
-            public void run() {
-                // 将删除的歌曲从列表移除
-                if (playList != null) {
-                    playList.getMusics().remove(music);
-                }
+            // 将歌曲从列表移除
+            if (playList != null) {
+                playList.getMusics().remove(music);
             }
-        }, 300);
+        }
     }
 
     @Nullable
@@ -688,6 +688,14 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
 
             // 记录到历史播放记录。
             logPlayedMusic();
+
+            // 如果有待移除的歌曲，则将其移除。
+            if (shouldDeleteMusic != null) {
+                // 将歌曲从列表移除
+                if (playList != null) {
+                    playList.getMusics().remove(shouldDeleteMusic);
+                }
+            }
         }
     }
 

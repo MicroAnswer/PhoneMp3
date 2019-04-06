@@ -12,6 +12,7 @@ import answer.android.phonemp3.R;
 import cn.microanswer.phonemp3.ACTION;
 import cn.microanswer.phonemp3.logic.SetLogic;
 import cn.microanswer.phonemp3.ui.SetPage;
+import cn.microanswer.phonemp3.ui.fragments.LogFragment;
 import cn.microanswer.phonemp3.ui.fragments.ScannFragment;
 import cn.microanswer.phonemp3.ui.fragments.WebFragment;
 import cn.microanswer.phonemp3.ui.views.colorpicker.ColorPickerDialog;
@@ -101,10 +102,11 @@ public class SetAnswer extends BaseAnswer<SetPage> implements SetLogic {
     }
 
     private void doCheckLog() {
+        getPhoneMp3Activity().push(LogFragment.class);
     }
 
     private void jumpGithub() {
-        Uri uri = Uri.parse("https://github.com/MicroAnswer/PhoneMp3");
+        Uri uri = Uri.parse(getPhoneMp3Activity().getString(R.string.github));
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         getPhoneMp3Activity().startActivity(intent);
     }
