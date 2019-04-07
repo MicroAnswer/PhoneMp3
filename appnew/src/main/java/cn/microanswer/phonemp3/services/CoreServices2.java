@@ -67,6 +67,9 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
     // 播放器会话。 - 相当于前台界面和后台播放服务的通讯桥梁。
     private MediaSessionCompat mediaSessionCompat;
 
+    // 播放器监听器。
+    private MMediaPlayerListener mediaPlayerListener;
+
     // 播放列表。每次在资源开始播放时检查此字段是否被初始化
     // 如果没有：则根据当前播放的歌曲所在的列表进行初始化。
     // 如果有：则不做初始化处理。
@@ -86,6 +89,9 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
     // 此字段，并将列表中该歌曲移除。
     private Music shouldDeleteMusic;
 
+    // 标记歌曲是否准备完毕。没有准备完毕，需要重新准备
+    private boolean isDataPeared;
+
     // 服务创建时调用。
     @Override
     public void onCreate() {
@@ -93,7 +99,7 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
 
         // 实例化 mediaPlayer， 并设置监听。
         mediaPlayer = new MediaPlayer();
-        MMediaPlayerListener mediaPlayerListener = new MMediaPlayerListener();
+        mediaPlayerListener = new MMediaPlayerListener();
         mediaPlayer.setOnErrorListener(mediaPlayerListener);
         mediaPlayer.setOnCompletionListener(mediaPlayerListener);
         mediaPlayer.setOnPreparedListener(mediaPlayerListener);
@@ -144,6 +150,7 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        isDataPeared = false;
         isPlaying = false;
         this.mediaPlayer.release();
         mediaSessionCompat.release();
@@ -151,6 +158,7 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
 
     // 播放指定歌曲。从指定位置播放
     public void play(Music music, int position) throws Exception {
+        this.isDataPeared = false;
         this.playAtPosition = position;
         this.currentMusic = music;
         this.mediaPlayer.reset();
@@ -170,7 +178,10 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
     // 恢复播放
     public void start() {
         if (currentMusic == null) return;
-
+        if (!this.isDataPeared) {
+            try{play(currentMusic, 0);}catch (Exception e) {onError(e);}
+            return;
+        }
         this.mediaPlayer.start();
         dispachStateChange(PlaybackStateCompat.STATE_PLAYING);
         isPlaying = true;
@@ -204,10 +215,7 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
         if (currentMusic == null) return;
 
         if (mediaPlayer != null) {
-            // 调用这个seekTo后，马上就会播放完当前歌曲，MMediaPlayerListener 的onCompletion方法就会被调用
-            // 然后进行自动下一曲。
-            mediaPlayer.seekTo(mediaPlayer.getDuration());
-            mediaPlayer.start();
+            mediaPlayerListener.onCompletion(mediaPlayer);
         }
     }
 
@@ -459,6 +467,31 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
         }
     }
 
+    // 初始化播放列表
+    private void initPlayListIfNeed() {
+        // 当前未初始化播放列表， 或者当前的播放列表与播放的歌曲不在同一个列表。
+        // 则进行播放列表的初始化。
+        if (playList == null || !playList.getId().equals(currentMusic.getListId())) {
+            // 初始化播放列表。
+
+            // 先获取当前歌曲所在列表里面的所有歌曲。
+            List<Music> musics = SQLite.select().from(Music.class)
+                    .where(Music_Table.list_id.eq(currentMusic.getListId()))
+                    .queryList();
+
+            // 根据这些歌曲构建当前正在播放的列表
+            playList = new PlayList();
+            playList.setId(Database.PLAYLIST_ID_CURRENT);
+            playList.setName("playing_list");
+            playList.setRamark(currentMusic.getListId());
+            // 保存正在播放列表信息。
+            playList.save();
+
+            // 将列表歌曲设定到列表中，
+            playList.setMusics(musics);
+        }
+    }
+
     @Nullable
     @Override
     public BrowserRoot onGetRoot(@NonNull String clientPackageName, int clientUid, @Nullable Bundle rootHints) {
@@ -552,9 +585,16 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
             } else if (ACTION.THEME_COLOR_CHANGE.equals(action)) {
                 sendNotify(currentMusic, mediaSessionCompat.getController().getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING);
 
-                // 设置当前播放歌曲的action
             } else if (ACTION.SET_CURRENT_MUSIC.equals(action)) {
-                Toast.makeText(CoreServices2.this, ACTION.SET_CURRENT_MUSIC, Toast.LENGTH_SHORT).show();
+                // 设置当前播放歌曲的action
+                Music music = Utils.APP.bundle2Music(extras);
+                try {
+                    playAtPosition = 0;
+                    currentMusic = music;
+                    initPlayListIfNeed();
+                } catch (Exception e) {
+                    onError(e);
+                }
             } else if (ACTION.SET_NEXT_MUSIC.equals(action)) {
                 getTaskHelper().run(new Task.ITask<Bundle, Music>() {
                     @Override
@@ -654,37 +694,15 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
 
         @Override
         public void onPrepared(MediaPlayer mp) {
+            isDataPeared = true;
 
-            // 当前未初始化播放列表， 或者当前的播放列表与播放的歌曲不在同一个列表。
-            // 则进行播放列表的初始化。
-            if (playList == null || !playList.getId().equals(currentMusic.getListId())) {
-                // 初始化播放列表。
-
-                // 先获取当前歌曲所在列表里面的所有歌曲。
-                List<Music> musics = SQLite.select().from(Music.class)
-                        .where(Music_Table.list_id.eq(currentMusic.getListId()))
-                        .queryList();
-
-                // 根据这些歌曲构建当前正在播放的列表
-                playList = new PlayList();
-                playList.setId(Database.PLAYLIST_ID_CURRENT);
-                playList.setName("playing_list");
-                playList.setRamark(currentMusic.getListId());
-                // 保存正在播放列表信息。
-                playList.save();
-
-                // 将列表歌曲设定到列表中，
-                playList.setMusics(musics);
-            }
+            initPlayListIfNeed();
 
             // 如果指定了播放位置，则从指定位置开始播放。
             if (playAtPosition >= 0) {
                 mp.seekTo(playAtPosition);
                 playAtPosition = -1;
             }
-
-            // 资源准备完成，进行播放。
-            start();
 
             // 记录到历史播放记录。
             logPlayedMusic();
@@ -696,11 +714,15 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
                     playList.getMusics().remove(shouldDeleteMusic);
                 }
             }
+
+            // 资源准备完成，进行播放。
+            start();
         }
     }
 
     private void onError(Exception e) {
         e.printStackTrace();
+        logger.e(e.getMessage());
     }
 
 }

@@ -26,6 +26,7 @@ import answer.android.phonemp3.R;
 import cn.microanswer.phonemp3.logic.LogLogic;
 import cn.microanswer.phonemp3.logic.answer.LogAnswer;
 import cn.microanswer.phonemp3.ui.LogPage;
+import cn.microanswer.phonemp3.ui.activitys.TxtActivity;
 import cn.microanswer.phonemp3.ui.fragments.adapter.LogListRecyclerViewAdapter;
 
 import static android.view.View.GONE;
@@ -167,7 +168,7 @@ public class LogFragment extends BaseFragment<LogLogic> implements LogPage, View
 
     @Override
     public void onClickLogListItem(int position, File f, View view) {
-        Toast.makeText(getPhoneMp3Activity(), "deving", Toast.LENGTH_SHORT).show();
+        TxtActivity.open(f.getAbsolutePath(), getPhoneMp3Activity());
     }
 
     @Override

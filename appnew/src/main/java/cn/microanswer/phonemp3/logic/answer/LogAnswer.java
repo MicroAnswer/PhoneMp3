@@ -46,9 +46,9 @@ public class LogAnswer extends BaseAnswer<LogPage> implements LogLogic {
             Task.TaskHelper.getInstance().run(new Task.ITask<Object, List<File>>() {
                 @Override
                 public List<File> run(Object param) throws Exception {
-                    String logFileName = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINESE).format(new Date()) + ".log";
+                    // String logFileName = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINESE).format(new Date()) + ".log";
                     File logDir = PhoneMp3Application.DIR_LOG;
-                    File[] listFiles = logDir.listFiles(pathname -> !pathname.getName().equals(logFileName));
+                    File[] listFiles = logDir.listFiles(/*pathname -> !pathname.getName().equals(logFileName)*/);
                     return Arrays.asList(listFiles);
                 }
 

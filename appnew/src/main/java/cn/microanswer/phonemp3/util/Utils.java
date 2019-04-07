@@ -29,7 +29,12 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -591,6 +596,34 @@ public class Utils {
          */
         public static String getDateStr(String s) {
             return new SimpleDateFormat(s, Locale.CHINA).format(new Date());
+        }
+
+        // 读取文本文件
+        public static String file2String(File txtFile) {
+            Reader reader = null;
+            String resulr = "";
+            try{
+                InputStreamReader rad = new InputStreamReader(new FileInputStream(txtFile), "UTF-8");
+                reader = new BufferedReader(rad);
+
+                char[] d = new char[512];
+                int size = 0;
+                StringBuilder sbu = new StringBuilder();
+                while ((size = reader.read(d))!=-1) {
+                    sbu.append(d, 0, size);
+                }
+                resulr = sbu.toString();
+            }catch (Exception e){
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (reader != null) reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return resulr;
         }
     }
 }
