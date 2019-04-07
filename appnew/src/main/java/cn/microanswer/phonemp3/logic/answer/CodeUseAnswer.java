@@ -37,7 +37,7 @@ public class CodeUseAnswer extends BaseAnswer<CodeUsePage> implements CodeUseLog
                                 "Make application more powerful.",
                                 "Material make view possible.",
                                 "Used for network.",
-                                "Load img in most-bast-easy way.",
+                                "Load img in most-best-easy way.",
                                 "From alibaba's json jar.",
                                 "For bean to database."
                         },
