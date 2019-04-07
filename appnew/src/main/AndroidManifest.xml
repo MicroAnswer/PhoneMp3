@@ -30,8 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="cn.microanswer.phonemp3.ui.activitys.TxtActivity" />
-
         <service android:name="cn.microanswer.phonemp3.services.CoreServices2"/>
 
     </application>

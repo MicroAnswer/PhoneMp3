@@ -12,6 +12,7 @@ import answer.android.phonemp3.R;
 import cn.microanswer.phonemp3.ACTION;
 import cn.microanswer.phonemp3.logic.SetLogic;
 import cn.microanswer.phonemp3.ui.SetPage;
+import cn.microanswer.phonemp3.ui.fragments.CodeUseFragment;
 import cn.microanswer.phonemp3.ui.fragments.LogFragment;
 import cn.microanswer.phonemp3.ui.fragments.ScannFragment;
 import cn.microanswer.phonemp3.ui.fragments.WebFragment;
@@ -162,6 +163,6 @@ public class SetAnswer extends BaseAnswer<SetPage> implements SetLogic {
 
     // 开源引用点击
     private void doCodeUse() {
-
+        getPhoneMp3Activity().push(CodeUseFragment.class);
     }
 }

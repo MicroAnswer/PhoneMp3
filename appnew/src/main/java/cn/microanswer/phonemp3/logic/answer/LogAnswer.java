@@ -3,15 +3,13 @@ package cn.microanswer.phonemp3.logic.answer;
 import android.os.Bundle;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import cn.microanswer.phonemp3.PhoneMp3Application;
 import cn.microanswer.phonemp3.logic.LogLogic;
 import cn.microanswer.phonemp3.ui.LogPage;
+import cn.microanswer.phonemp3.ui.fragments.TxtFragment;
 import cn.microanswer.phonemp3.util.Logger;
 import cn.microanswer.phonemp3.util.Task;
 
@@ -69,5 +67,10 @@ public class LogAnswer extends BaseAnswer<LogPage> implements LogLogic {
     @Override
     public void onRefreshClick() {
         loadAndDisplayLogList();
+    }
+
+    @Override
+    public void onLogItemClick(int position, File f) {
+        TxtFragment.open(f.getAbsolutePath(), getPhoneMp3Activity());
     }
 }

@@ -618,7 +618,7 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
             } else if (ACTION.MUSIC_DELETED.equals(action)) {
                 onMusicDeleted(Utils.APP.bundle2Music(extras));
             } else if (ACTION.EXIT.equals(action)) {
-                pause();
+                isDataPeared = false;
                 stopForeground(true);
             }
         }

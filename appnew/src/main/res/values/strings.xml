@@ -81,6 +81,8 @@
     <string name="nologfound">暂时还没有找到任何日志记录文件</string>
     <string name="clearLog">清空日志</string>
     <string name="fontsize">字体大小</string>
+    <string name="codeuse">开源引用</string>
+    <string name="nocodeuse">本程序没有引用任何第三方依赖</string>
 
     <item name="refresh" type="id" />
 

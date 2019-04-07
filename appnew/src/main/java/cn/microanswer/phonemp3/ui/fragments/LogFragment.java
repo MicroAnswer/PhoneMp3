@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.io.File;
 import java.util.List;
@@ -26,7 +25,6 @@ import answer.android.phonemp3.R;
 import cn.microanswer.phonemp3.logic.LogLogic;
 import cn.microanswer.phonemp3.logic.answer.LogAnswer;
 import cn.microanswer.phonemp3.ui.LogPage;
-import cn.microanswer.phonemp3.ui.activitys.TxtActivity;
 import cn.microanswer.phonemp3.ui.fragments.adapter.LogListRecyclerViewAdapter;
 
 import static android.view.View.GONE;
@@ -37,6 +35,7 @@ public class LogFragment extends BaseFragment<LogLogic> implements LogPage, View
     LogLogic newLogic() {
         return new LogAnswer(this);
     }
+
     // 加载完成数据后，数据不是猛的闪现出来的，而是渐变显示出来的，此字段保存渐变时长。单位毫秒
     private int mAnimTime = 200;
 
@@ -113,7 +112,6 @@ public class LogFragment extends BaseFragment<LogLogic> implements LogPage, View
         }
 
 
-
         // 影藏加载容器，显示数据容器。
         recyclerViewLogList.setAlpha(0F);
         recyclerViewLogList.setVisibility(VISIBLE);
@@ -156,7 +154,7 @@ public class LogFragment extends BaseFragment<LogLogic> implements LogPage, View
         }
     }
 
-    private LogListRecyclerViewAdapter getAdapter () {
+    private LogListRecyclerViewAdapter getAdapter() {
         RecyclerView.Adapter adapter = recyclerViewLogList.getAdapter();
         if (adapter == null) {
             adapter = new LogListRecyclerViewAdapter();
@@ -168,7 +166,7 @@ public class LogFragment extends BaseFragment<LogLogic> implements LogPage, View
 
     @Override
     public void onClickLogListItem(int position, File f, View view) {
-        TxtActivity.open(f.getAbsolutePath(), getPhoneMp3Activity());
+        getLogic().onLogItemClick(position, f);
     }
 
     @Override
