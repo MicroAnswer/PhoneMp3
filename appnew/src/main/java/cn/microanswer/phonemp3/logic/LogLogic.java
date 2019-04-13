@@ -11,4 +11,7 @@ public interface LogLogic extends Logic<LogPage> {
     void onRefreshClick();
 
     void onLogItemClick(int position, File f);
+
+    // 处理清空日志按钮点击事件
+    void doClearLog();
 }

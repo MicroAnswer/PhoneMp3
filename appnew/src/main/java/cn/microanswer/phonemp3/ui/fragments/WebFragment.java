@@ -88,10 +88,7 @@ public class WebFragment extends BaseFragment<WebLogic> implements WebPage {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == 16908332) {
-            getPhoneMp3Activity().onBackPressed();
-            return true;
-        } else if (item.getItemId() == R.id.refresh) {
+        if (item.getItemId() == R.id.refresh) {
             webView.reload();
             return true;
         }

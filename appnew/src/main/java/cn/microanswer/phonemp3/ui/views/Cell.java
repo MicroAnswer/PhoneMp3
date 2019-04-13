@@ -35,7 +35,7 @@ public class Cell extends LinearLayout {
 
     private Paint paint;
     private int underLine = 1; // 下划线高度
-    private int underLineColor = Color.parseColor("#A0A0A0");
+    private int underLineColor = Color.parseColor("#66666666");
 
     public Cell(Context context) {
         super(context);

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+实验室功能块的三个按钮。
+ -->
+
+<cn.microanswer.phonemp3.ui.views.Group xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:tag="@string/mtheme_color"
+    app:title="实验室"
+    app:titleBackground="@color/linecolor"
+    app:titleColor="@color/colorPrimary">
+
+    <cn.microanswer.phonemp3.ui.views.Cell
+        android:id="@+id/cellCodeUse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_list_item_style"
+        android:paddingLeft="@dimen/setItemPaddingLR"
+        android:paddingTop="@dimen/setItemPaddingTB"
+        android:paddingRight="@dimen/setItemPaddingLR"
+        android:paddingBottom="@dimen/setItemPaddingTB"
+        android:tag="@string/mtheme_color"
+        app:icon="@drawable/icon_code"
+        app:titLe="开源引用"
+        app:underLine="1px">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/icon_right"
+            android:tag="@string/mtheme_color" />
+
+    </cn.microanswer.phonemp3.ui.views.Cell>
+
+    <cn.microanswer.phonemp3.ui.views.Cell
+        android:id="@+id/cellLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_list_item_style"
+        android:paddingLeft="@dimen/setItemPaddingLR"
+        android:paddingTop="@dimen/setItemPaddingTB"
+        android:paddingRight="@dimen/setItemPaddingLR"
+        android:paddingBottom="@dimen/setItemPaddingTB"
+        android:tag="@string/mtheme_color"
+        app:icon="@drawable/ic_log"
+        app:titLe="@string/seelog"
+        app:underLine="1px">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/icon_right"
+            android:tag="@string/mtheme_color" />
+
+    </cn.microanswer.phonemp3.ui.views.Cell>
+
+    <cn.microanswer.phonemp3.ui.views.Cell
+        android:id="@+id/cellGithub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_list_item_style"
+        android:paddingLeft="@dimen/setItemPaddingLR"
+        android:paddingTop="@dimen/setItemPaddingTB"
+        android:paddingRight="@dimen/setItemPaddingLR"
+        android:paddingBottom="@dimen/setItemPaddingTB"
+        android:tag="@string/mtheme_color"
+        app:icon="@drawable/ic_github"
+        app:titLe="Github"
+        app:underLine="1px">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/icon_right"
+            android:tag="@string/mtheme_color" />
+    </cn.microanswer.phonemp3.ui.views.Cell>
+</cn.microanswer.phonemp3.ui.views.Group>

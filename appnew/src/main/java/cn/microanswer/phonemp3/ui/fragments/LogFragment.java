@@ -2,6 +2,7 @@ package cn.microanswer.phonemp3.ui.fragments;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,6 +27,7 @@ import cn.microanswer.phonemp3.logic.LogLogic;
 import cn.microanswer.phonemp3.logic.answer.LogAnswer;
 import cn.microanswer.phonemp3.ui.LogPage;
 import cn.microanswer.phonemp3.ui.fragments.adapter.LogListRecyclerViewAdapter;
+import cn.microanswer.phonemp3.util.Utils;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -95,9 +97,10 @@ public class LogFragment extends BaseFragment<LogLogic> implements LogPage, View
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == 16908332) {
-            getPhoneMp3Activity().onBackPressed();
-            return true;
+        if (item.getItemId() == R.id.clearlog) {
+            getLogic().doClearLog();
+        } else if (item.getItemId() == R.id.about) {
+            alert(getString(R.string.seelog), getString(R.string.logabout));
         }
         return super.onOptionsItemSelected(item);
     }

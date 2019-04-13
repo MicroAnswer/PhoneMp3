@@ -75,14 +75,6 @@ public class SetFragment extends BaseFragment<SetLogic> implements SetPage, View
         getLogic().onPageCreated(savedInstanceState, getArguments());
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == 16908332) {
-            getPhoneMp3Activity().onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onDestroy() {

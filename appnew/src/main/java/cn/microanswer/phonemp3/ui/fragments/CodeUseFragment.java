@@ -58,15 +58,6 @@ public class CodeUseFragment extends BaseFragment<CodeUseLogic> implements CodeU
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == 16908332) {
-            getPhoneMp3Activity().onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
         setHasOptionsMenu(false);

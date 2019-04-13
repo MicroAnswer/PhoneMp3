@@ -66,16 +66,6 @@ public class PlayFragment extends BaseFragment<PlayLogic> implements PlayPage, V
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == 16908332) {
-            getPhoneMp3Activity().onBackPressed();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onDestroy() {
 
         PhoneMp3Activity phoneMp3Activity = getPhoneMp3Activity();

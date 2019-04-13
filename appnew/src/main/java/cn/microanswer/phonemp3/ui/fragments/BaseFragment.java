@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -106,6 +108,16 @@ public abstract class BaseFragment<L extends Logic> extends Fragment implements 
         }
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == 16908332) {
+            getPhoneMp3Activity().onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public boolean handleOnBackPressed() {
         return false;
@@ -113,12 +125,17 @@ public abstract class BaseFragment<L extends Logic> extends Fragment implements 
 
     @Override
     public Dialog alert(String msg) {
+        return alert(null, msg);
+    }
+
+    @Override
+    public Dialog alert(String title, String msg) {
         if (isDestoryed) {
             return null;
         }
 
         Dialog dialog = new AlertDialog.Builder(getPhoneMp3Activity())
-                .setTitle(R.string.alert)
+                .setTitle(TextUtils.isEmpty(title) ? getString(R.string.alert) : title)
                 .setMessage(msg)
                 .setPositiveButton(R.string.sure, null)
                 .create();

@@ -63,15 +63,6 @@ public class TxtFragment extends BaseFragment<TxtLogic> implements TxtPage {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == 16908332) {
-            getPhoneMp3Activity().onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     // 调用此方法快速打开文本文件。
     public static void open(String filePath, PhoneMp3Activity phoneMp3Activity) {
 

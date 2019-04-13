@@ -18,6 +18,7 @@ import cn.microanswer.phonemp3.entity.Music;
 import cn.microanswer.phonemp3.logic.MainLogic;
 import cn.microanswer.phonemp3.ui.MainPage;
 import cn.microanswer.phonemp3.ui.activitys.PhoneMp3Activity;
+import cn.microanswer.phonemp3.ui.fragments.AboutFragment;
 import cn.microanswer.phonemp3.ui.fragments.Main_AllMusicFragment;
 import cn.microanswer.phonemp3.ui.fragments.Main_MyLoveFragment;
 import cn.microanswer.phonemp3.ui.fragments.Main_PlayListFragment;
@@ -277,8 +278,10 @@ public class MainAnswer extends BaseAnswer<MainPage> implements MainLogic {
     }
 
     private void jumpToAbout() {
-        Bundle b = new Bundle();
-        b.putString("url", "http://microanswer.cn/html/phonemp3/about.html");
-        getPhoneMp3Activity().push(WebFragment.class, b);
+        // Bundle b = new Bundle();
+        // b.putString("url", "http://microanswer.cn/html/phonemp3/about.html");
+        // getPhoneMp3Activity().push(WebFragment.class, b);
+
+        getPhoneMp3Activity().push(AboutFragment.class);
     }
 }

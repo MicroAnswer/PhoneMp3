@@ -42,6 +42,7 @@ public interface Page<L extends Logic> {
      * @param msg
      */
     Dialog alert(String msg);
+    Dialog alert(String title, String msg);
 
     /**
      * 弹出询问框
