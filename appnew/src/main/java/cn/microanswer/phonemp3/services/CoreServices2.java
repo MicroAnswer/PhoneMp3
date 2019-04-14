@@ -143,7 +143,7 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
             }
         }
 
-        logger.i("服务onStartCommand");
+        // logger.i("服务onStartCommand");
         return super.onStartCommand(intent, flags, startId);
     }
 

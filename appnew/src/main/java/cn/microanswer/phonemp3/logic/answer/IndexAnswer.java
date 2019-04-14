@@ -66,12 +66,12 @@ public class IndexAnswer extends BaseAnswer<IndexPage> implements IndexLogic {
             Task.TaskHelper.getInstance().run(new Task.ITask<Void, String>() {
                 @Override
                 public String run(Void param) throws Exception {
-                    logger.i("从数据库加载封面数据...");
+                    // logger.i("从数据库加载封面数据...");
                     // 从数据库加载
                     final Config config = SQLite.select().from(Config.class).where(Config_Table._Key.eq("cover")).querySingle();
 
                     if (config == null) {
-                        logger.i("从数据库中没有获取到信息...从网上加载...");
+                        // logger.i("从数据库中没有获取到信息...从网上加载...");
                         // 数据库没有封面信息， 此时加载封面信息并显示。
                         String s = HttpUtil.postCnMicroanswer(API.METHOD.GET_COVER, null);
                         if (!TextUtils.isEmpty(s)) {
@@ -94,7 +94,7 @@ public class IndexAnswer extends BaseAnswer<IndexPage> implements IndexLogic {
                         String value = config.getValue();
                         final JSONObject data = new JSONObject(value);
 
-                        logger.i("从数据库中加载封面成功...");
+                        // logger.i("从数据库中加载封面成功...");
                         // 检测今天是否加载过， 如果没有加载过则加载下来，下一次打开app的时候会显示。
                         long lastCheckCoverTime = Long.valueOf(config.getDesc());
 
@@ -104,10 +104,10 @@ public class IndexAnswer extends BaseAnswer<IndexPage> implements IndexLogic {
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-DD", Locale.CHINA);
                         String lastCheckDay = simpleDateFormat.format(calendar.getTime());
 
-                        logger.i("判断上次加载的时间和这次加载的时间是否同一天...");
+                        // logger.i("判断上次加载的时间和这次加载的时间是否同一天...");
                         // 此时时间和上次加载的时间不是同一天，则认为今天还没有加载。
                         if (!lastCheckDay.equals(simpleDateFormat.format(new Date()))) {
-                            logger.i("上次加载时间不是今天，尝试加载新的封面");
+                            // logger.i("上次加载时间不是今天，尝试加载新的封面");
                             Task.TaskHelper.getInstance().run(new Task.ITask<Void, Void>() {
 
                                 @Override
@@ -121,7 +121,7 @@ public class IndexAnswer extends BaseAnswer<IndexPage> implements IndexLogic {
                                             config.setValue(object.toString());
                                             config.setDesc(System.currentTimeMillis() + "");
                                             boolean update = config.update();
-                                            logger.i("今天加载封面并保存数据库结果：" + update);
+                                            // logger.i("今天加载封面并保存数据库结果：" + update);
                                         }
                                     }
 
