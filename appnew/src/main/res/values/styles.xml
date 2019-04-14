@@ -27,6 +27,8 @@
     <!-- 导航栏样式 -->
     <style name="toolbarStyle" parent="Widget.MaterialComponents.Toolbar">
         <item name="titleTextColor">@android:color/white</item>
+        <!--<item name="contentInsetStart">0dp</item>-->
+        <item name="contentInsetStartWithNavigation">0dp</item>
         <item name="colorControlNormal">@android:color/white</item>
     </style>
 

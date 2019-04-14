@@ -73,6 +73,14 @@ public class TxtFragment extends BaseFragment<TxtLogic> implements TxtPage {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.fontsize) {
+            // TODO 调节字体大小。
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         setHasOptionsMenu(false);

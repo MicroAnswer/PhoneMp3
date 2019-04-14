@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:tag="@string/mtheme_background"
+    app:boottomColor="?attr/colorPrimary"
+    app:leftColor="?attr/colorPrimary"
+    app:rightColor="?attr/colorPrimary"
+    app:topColor="?attr/colorPrimary">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:tag="@string/mtheme_background"
+        android:theme="?windowActionBar"
+        app:title="@string/search">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:inputType="text"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/darker_gray"
+                android:hint="@string/type_search_txt"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:gravity="center"
+                android:textColor="?android:textColorPrimaryInverse"
+                android:text="@string/search" />
+
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- 在还没有输入内容的时候，显示搜索历史记录的视图。 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- 搜索记录标题 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/search_history"
+            android:textColor="?android:textColorSecondary" />
+
+        <!-- 搜索记录内容区域 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 暂无搜索记录提示 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/no_search_history"
+                android:textColor="?android:textColorSecondary" />
+
+            <!-- 流式布局 - 所有搜索记录都会显示在这里面 -->
+            <com.google.android.material.internal.FlowLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemSpacing="4dp"
+                app:lineSpacing="4dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- 加载视图 -->
+        <include
+            layout="@layout/view_common_loading"
+            android:visibility="gone" />
+
+        <!-- 空数据视图 -->
+        <include layout="@layout/view_no_searchresult" />
+
+        <!-- 数据显示区域 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSearchResult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+
+</cn.microanswer.phonemp3.ui.views.FitSystemLinearLayout>
