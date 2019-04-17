@@ -278,6 +278,16 @@ public class Utils {
     }
 
     public static class APP {
+        // 更新android手机，某文件被删除了、
+        public static void updateFileFromDatabase(Context context,String filepath){
+            String where=MediaStore.Audio.Media.DATA+" = ?";
+            int i=  context.getContentResolver().delete(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,where,new String[]{filepath});
+            if(i>0){
+                Log.e("Utils.APP","媒体库更新成功！");
+            } else {
+                Log.e("Utils.APP","媒体库更新失败！");
+            }
+        }
         /**
          * 获取应用版本号
          *
@@ -443,10 +453,10 @@ public class Utils {
                         music.setDuration(String.valueOf(duration));
                         music.setListId(playList.getId());
 
-                        onScannListener.onMusic(music);
 
                         if (!musicFile.exists()) { // 音乐文件不存在。将数据从数据库移除
                             music.delete();
+                            Log.w("ScannMusic", music.get_data() + " 已不存在。");
                             continue;
                         }
 
@@ -457,6 +467,7 @@ public class Utils {
                             // 数据库中已存在。
                             continue;
                         } else {
+                            onScannListener.onMusic(music);
                             music.setUpdateAt(simpleDateFormat.format(new Date()));
 
                             // 加载歌曲封面

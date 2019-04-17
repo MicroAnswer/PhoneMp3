@@ -34,7 +34,7 @@ public class Main_AllMusic_M_Answer extends BaseAnswer<Main_AllMucis_M_Page> imp
     // private static Logger logger = new Logger(Main_AllMusic_M_Answer.class);
 
     private String currentScan = ""; // 标记当前扫描到的
-    private List<Music> musics;
+    static List<Music> musics;
 
     public Main_AllMusic_M_Answer(Main_AllMucis_M_Page page) {
         super(page);
@@ -44,6 +44,12 @@ public class Main_AllMusic_M_Answer extends BaseAnswer<Main_AllMucis_M_Page> imp
     @Override
     public void onPageCreated(Bundle savedInstanceState, Bundle arguments) {
         getPhoneMp3Activity().addMyMediaController(this);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         if (musics == null) {
             loadAllMusics();
         } else {
@@ -306,6 +312,7 @@ public class Main_AllMusic_M_Answer extends BaseAnswer<Main_AllMucis_M_Page> imp
                         }
                         Toast.makeText(getPhoneMp3Activity(), getPhoneMp3Activity().getString(R.string.deleteSucess), Toast.LENGTH_SHORT).show();
                         getPage().dataDeleted(position);
+                        Task.TaskHelper.getInstance().run(() -> Utils.APP.updateFileFromDatabase(getPhoneMp3Activity(), music.get_data()));
                     } else {
                         Toast.makeText(getPhoneMp3Activity(), getPhoneMp3Activity().getString(R.string.deleteFail), Toast.LENGTH_SHORT).show();
                     }

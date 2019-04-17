@@ -50,6 +50,12 @@ public class Main_AllMusic_M_Fragment extends BaseFragment<Main_AllMusic_M_Logic
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getLogic().onResume();
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
 

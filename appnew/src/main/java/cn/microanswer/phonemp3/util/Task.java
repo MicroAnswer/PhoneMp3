@@ -207,6 +207,16 @@ public class Task<P, R> {
         }
 
         /**
+         * 在主线程执行一个任务。
+         * @param runnable
+         */
+        public void post(Runnable runnable) {
+            if (taskThreads!=null && taskThreads.size() > 0) {
+                taskThreads.get(0).mainHandler.post(runnable);
+            }
+        }
+
+        /**
          * 执行一个异步任务
          *
          * @param iTask 要执行的任务
@@ -218,6 +228,16 @@ public class Task<P, R> {
             Task<P, R> task = newTask(iTask);
             run(task);
             return task;
+        }
+        public void run(Runnable runnable) {
+            if (runnable == null) return;
+            run(new ITask<Object, Object>() {
+                @Override
+                public Object run(Object param) throws Exception {
+                    runnable.run();
+                    return null;
+                }
+            });
         }
 
         public void runAfter(final Runnable runnable, final long timeMillis) {
@@ -265,13 +285,13 @@ public class Task<P, R> {
             this.lock = taskHelper;
         }
 
-        private Handler handler;
+        private Handler mainHandler;
 
         @Override
         public void run() {
             // Log.i("Mic", "线程开始：" + Thread.currentThread().getName());
 
-            handler = new Handler(Looper.getMainLooper());
+            mainHandler = new Handler(Looper.getMainLooper());
 
             while (isRunning) {
                 try {
@@ -299,7 +319,7 @@ public class Task<P, R> {
                     } catch (Exception e) {
                         returnData[1] = e;
                         // 错误信息抛出到主线程
-                        handler.post(new Runnable() {
+                        mainHandler.post(new Runnable() {
                             @Override
                             public void run() {
                                 task.onError((Exception) returnData[1]);
@@ -310,7 +330,7 @@ public class Task<P, R> {
                     // 没有抛错，继续执行主线程通知。
                     if (returnData[1] == null) {
                         // 执行完成，通知主线程
-                        handler.post(new Runnable() {
+                        mainHandler.post(new Runnable() {
                             @Override
                             public void run() {
                                 task.rruunnEnd((R) returnData[0]);
@@ -323,7 +343,7 @@ public class Task<P, R> {
                     e.printStackTrace();
                 }
             }
-            handler = null;
+            mainHandler = null;
             // Log.i("Mic", "线程结束:" + Thread.currentThread().getName());
         }
 
