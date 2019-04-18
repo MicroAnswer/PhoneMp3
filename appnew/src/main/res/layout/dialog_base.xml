@@ -21,6 +21,7 @@
     <FrameLayout
         android:id="@+id/mDialogContent"
         android:layout_width="match_parent"
+        android:paddingTop="8dp"
         android:layout_height="wrap_content"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@+id/buttons_bottom"

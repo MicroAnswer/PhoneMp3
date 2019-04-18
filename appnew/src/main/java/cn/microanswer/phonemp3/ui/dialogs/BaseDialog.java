@@ -77,8 +77,12 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener,
         mButtonSure = findViewById(R.id.buttonSure);
 
         if (!hasCancelBtn()) {
-            mButtonCancel.setVisibility(View.INVISIBLE);
+            mButtonCancel.setVisibility(View.GONE);
             mButtonCancel.setEnabled(false);
+        }
+        if (!hasSureBtn()) {
+            mButtonSure.setVisibility(View.GONE);
+            mButtonSure.setEnabled(false);
         }
 
         String btnSureTxt = getBtnSureTxt();
@@ -91,7 +95,11 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener,
             mButtonCancel.setText(btnCancelTxt);
         }
 
-        mTextViewTitle.setText(mDialogTitle);
+        if (hasTitle()) {
+            mTextViewTitle.setText(mDialogTitle);
+        } else {
+            mTextViewTitle.setVisibility(View.GONE);
+        }
         mButtonSure.setOnClickListener(this);
         mButtonCancel.setOnClickListener(this);
         mDialogContent.addView(getContentView(mDialogContent));
@@ -133,6 +141,12 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener,
      * @return
      */
     protected abstract View getContentView(FrameLayout parent);
+
+    // 返回 false 则不会显示确认按钮
+    protected boolean hasSureBtn() {return true;}
+
+    // 返回false 则不会显示标题。
+    protected boolean hasTitle() { return true;}
 
     /**
      * 返回true 则显示取消按钮

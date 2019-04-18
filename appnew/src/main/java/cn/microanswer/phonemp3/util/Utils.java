@@ -455,7 +455,10 @@ public class Utils {
 
 
                         if (!musicFile.exists()) { // 音乐文件不存在。将数据从数据库移除
-                            music.delete();
+                            // music.delete();
+                            SQLite.delete(Music.class)
+                                    .where(Music_Table._data.eq(music.get_data()))
+                                    .executeUpdateDelete();
                             Log.w("ScannMusic", music.get_data() + " 已不存在。");
                             continue;
                         }

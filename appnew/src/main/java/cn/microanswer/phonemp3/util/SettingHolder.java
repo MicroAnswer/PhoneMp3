@@ -18,6 +18,15 @@ public class SettingHolder {
         return sharedPreferences.getBoolean("isDayMode", true);
     }
 
+
+    public void setTxtlogSize(int size) {
+        editor.putInt("txtlogSize", size).apply();
+    }
+
+    public int getTxtlogSize() {
+        return sharedPreferences.getInt("txtlogSize", 16);
+    }
+
     public SettingHolder setDayMode(boolean isDayMode) {
         editor.putBoolean("isDayMode", isDayMode);
         editor.putBoolean("isNightMode", !isDayMode).apply();

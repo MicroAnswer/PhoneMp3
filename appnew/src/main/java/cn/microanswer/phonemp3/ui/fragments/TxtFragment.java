@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,8 +22,12 @@ import cn.microanswer.phonemp3.logic.TxtLogic;
 import cn.microanswer.phonemp3.logic.answer.TxtAnswer;
 import cn.microanswer.phonemp3.ui.TxtPage;
 import cn.microanswer.phonemp3.ui.activitys.PhoneMp3Activity;
+import cn.microanswer.phonemp3.ui.dialogs.SignleListMenu;
+import cn.microanswer.phonemp3.util.SettingHolder;
 
-public class TxtFragment extends BaseFragment<TxtLogic> implements TxtPage {
+public class TxtFragment extends BaseFragment<TxtLogic> implements TxtPage, SignleListMenu.ItemClickListener {
+    private int[] SIZES = {10, 13, 16, 20, 30};
+    private int index = 2;
 
     @Override
     TxtLogic newLogic() {
@@ -45,6 +50,15 @@ public class TxtFragment extends BaseFragment<TxtLogic> implements TxtPage {
         super.onViewCreated(view, savedInstanceState);
         textview = findViewById(R.id.textview);
 
+
+        int txtlogSize = SettingHolder.getSettingHolder().getTxtlogSize();
+        textview.setTextSize(TypedValue.COMPLEX_UNIT_SP, txtlogSize);
+        for (int i = 0; i < SIZES.length; i++) {
+            if (SIZES[i] == txtlogSize) {
+                index = i;
+                break;
+            }
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         getPhoneMp3Activity().setSupportActionBar(toolbar);
@@ -75,9 +89,16 @@ public class TxtFragment extends BaseFragment<TxtLogic> implements TxtPage {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.fontsize) {
-            // TODO 调节字体大小。
+            changeTxtsize();
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void changeTxtsize() {
+        SignleListMenu s = new SignleListMenu(getPhoneMp3Activity(), R.array.txtsizelist, index);
+        s.setItemClickListener(this);
+        s.show();
     }
 
     @Override
@@ -95,5 +116,12 @@ public class TxtFragment extends BaseFragment<TxtLogic> implements TxtPage {
     public void showTxt(String txt) {
         textview.setText(TextUtils.isEmpty(txt) ? "无内容" : txt);
         if (loadDialog != null) loadDialog.dismiss();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        textview.setTextSize(TypedValue.COMPLEX_UNIT_SP, SIZES[position]);
+        SettingHolder.getSettingHolder().setTxtlogSize(SIZES[position]);
+        index = position;
     }
 }

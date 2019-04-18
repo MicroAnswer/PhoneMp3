@@ -92,6 +92,13 @@
     <string name="no_search_history">暂无搜索记录</string>
     <string name="no_search_result">没有找到相关内容</string>
     <string name="type_search_txt">输入搜索内容</string>
+    <string-array name="txtsizelist">
+        <item>特小</item>
+        <item>小</item>
+        <item>正常</item>
+        <item>大</item>
+        <item>特大</item>
+    </string-array>
 
     <item name="refresh" type="id" />
 

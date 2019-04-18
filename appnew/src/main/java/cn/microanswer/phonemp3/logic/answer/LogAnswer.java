@@ -6,6 +6,8 @@ import android.os.Bundle;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -53,6 +55,7 @@ public class LogAnswer extends BaseAnswer<LogPage> implements LogLogic {
                     String logFileName = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINESE).format(new Date()) + ".log";
                     File logDir = PhoneMp3Application.DIR_LOG;
                     File[] listFiles = logDir.listFiles(pathname -> !pathname.getName().equals(logFileName));
+                    Arrays.sort(listFiles, (o1, o2) -> o1.getName().compareTo(o2.getName()));
                     return Arrays.asList(listFiles);
                 }
 
