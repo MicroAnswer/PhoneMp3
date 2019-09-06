@@ -22,7 +22,7 @@ public class PhoneMp3Application extends Application {
         // 日志目录
         DIR_LOG = new File(getFilesDir().getAbsolutePath(), "logs");
 
-        // 初始化设置值
+        // 加载设置
         SettingHolder.getSettingHolder().init(PhoneMp3Application.this);
 
         // 设定程序崩溃时异常搜集
