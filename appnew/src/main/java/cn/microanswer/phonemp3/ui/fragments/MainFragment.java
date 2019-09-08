@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.request.RequestOptions;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -210,7 +212,8 @@ public class MainFragment extends BaseFragment<MainLogic> implements MainPage,
         if (coverPath == null) {
             Glide.with(this).load(R.drawable.icon_ablem).into(imageViewCover);
         } else {
-            Glide.with(this).load(coverPath).into(imageViewCover);
+            RequestOptions requestOptions = new RequestOptions().error(R.drawable.icon_ablem);
+            Glide.with(this).load(coverPath).apply(requestOptions).into(imageViewCover);
         }
         if (title == null) {
             title = getString(R.string.app_name);

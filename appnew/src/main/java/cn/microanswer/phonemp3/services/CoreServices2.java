@@ -166,13 +166,20 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
         this.mediaPlayer.prepareAsync();
     }
 
-    // 暂停
+    // 暂停，是否修改通知。
     public void pause() {
+        pause(true);
+    }
+    // 暂停
+    public void pause(boolean sendNotify) {
         if (currentMusic == null) return;
 
         this.mediaPlayer.pause();
         dispachStateChange(PlaybackStateCompat.STATE_PAUSED);
         isPlaying = false;
+        if (sendNotify) {
+            sendNotify(currentMusic, false);
+        }
     }
 
     // 恢复播放
@@ -205,8 +212,6 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
         mediaSessionCompat.setPlaybackState(stateCompat);
         if (stateCompat.getState() == PlaybackStateCompat.STATE_PLAYING) {
             sendNotify(currentMusic, true);
-        } else {
-            sendNotify(currentMusic, false);
         }
     }
 
@@ -619,7 +624,9 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
                 onMusicDeleted(Utils.APP.bundle2Music(extras));
             } else if (ACTION.EXIT.equals(action)) {
                 isDataPeared = false;
+                pause(false);
                 stopForeground(true);
+                mediaSessionCompat.sendSessionEvent("service_exit", null);
             }
         }
     }

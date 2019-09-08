@@ -204,7 +204,7 @@ public class MainAnswer extends BaseAnswer<MainPage> implements MainLogic {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        getPhoneMp3Activity().finish();
+        // getPhoneMp3Activity().finish();
     }
 
     @Override

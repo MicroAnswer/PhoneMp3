@@ -44,15 +44,14 @@ public class IndexFragment extends BaseFragment<IndexLogic> implements IndexPage
         textViewVersionInfo = findViewById(R.id.textViewVersionInfo);
         imageViewCover = findViewById(R.id.imageViewCover);
         imageViewCover.setOnClickListener(this);
-
         getLogic().onPageCreated(savedInstanceState, getArguments());
     }
 
     @Override
     public void displayCover(String url) {
-        if (isAdded() && isVisible()) {
+        try {
             Glide.with(this).load(url).into(imageViewCover);
-        }
+        }catch (Exception ignore) {}
     }
 
     @Override

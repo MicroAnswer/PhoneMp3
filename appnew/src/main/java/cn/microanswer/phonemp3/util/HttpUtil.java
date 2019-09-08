@@ -552,24 +552,12 @@ public class HttpUtil {
      * @param param
      */
     public static String postCnMicroanswer(String method, Map<String, String> param) throws Exception {
-        final String url = API.URL;
+        final String url = API.URL + method;
 
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("method", method);
-        if (param != null) {
-            JSONObject data = new JSONObject();
-            Set<Map.Entry<String, String>> entries = param.entrySet();
-            for (Map.Entry<String, String> e : entries) {
-                data.put(e.getKey(), e.getValue());
-            }
-            requestBody.put("data", data);
-        }
-        String requestString = requestBody.toJSONString();
-
-        logger.i(String.format("请求接口：%s，方法：%s，参数：%s", url, method, requestString));
+        logger.i(String.format("请求接口：%s，参数：%s", url, map2wwwUrlFormEncode(param)));
         String s;
         try {
-            s = postApplicationJson(url, requestString);
+            s = postFormUrlEncode(url, param);
         } catch (Exception e) {
             e.printStackTrace();
             logger.e("请求网络出错：" + e.getMessage());

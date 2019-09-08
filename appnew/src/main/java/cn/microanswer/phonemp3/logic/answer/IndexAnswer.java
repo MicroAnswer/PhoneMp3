@@ -184,6 +184,9 @@ public class IndexAnswer extends BaseAnswer<IndexPage> implements IndexLogic {
         if (isKeepJump) {
             Task.TaskHelper.getInstance().runAfter(this::jumpInApplication, 500);
         }
+        if (null != coverUrl){
+            getPage().displayCover(coverUrl);
+        }
     }
 
     private void jumpInApplication() {

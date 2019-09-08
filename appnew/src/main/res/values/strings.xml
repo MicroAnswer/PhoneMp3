@@ -85,7 +85,7 @@
     <string name="nocodeuse">本程序没有引用任何第三方依赖</string>
     <string name="clearLogHint">清空日志可以减少存储空间的占用，但由于看不到您本机产生的错误日志，会让开发者无法快速修复程序中存在的BUG。 \n您确定要清空所有日志吗？</string>
     <string name="logabout">日志文件有助于帮助开发者快速找到程序的BUG，从而更快的修复，给用户带来更好的体验。 \n日志文件每天都会产生一个，但只会占用一小部分手机存储空间。</string>
-    <string name="web">http://microanswer.cn</string>
+    <string name="web">https://www.microanswer.cn</string>
     <string name="versionwarp">版本:%s</string>
     <string name="search">搜索</string>
     <string name="search_history">搜索记录</string>
