@@ -37,13 +37,16 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import androidx.core.graphics.drawable.DrawableCompat;
 import cn.microanswer.phonemp3.Database;
+import cn.microanswer.phonemp3.entity.Ablum;
 import cn.microanswer.phonemp3.entity.Music;
 import cn.microanswer.phonemp3.entity.Music_Table;
 import cn.microanswer.phonemp3.entity.PlayList;
@@ -350,6 +353,47 @@ public class Utils {
             return JSON.parseObject(bundle.getString("music"), Music.class);
         }
 
+        // 获取手机里面所有的专辑
+        public static List<Ablum> getAllAblum(Context context) {
+
+            List<Ablum> ablums = new ArrayList<>();
+
+            // ablums.addAll(_getAblums(MediaStore.Audio.Albums.INTERNAL_CONTENT_URI, context));
+            ablums.addAll(_getAblums(MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI, context));
+
+            return ablums;
+        }
+
+        private static List<Ablum> _getAblums(Uri uri, Context context) {
+            ContentResolver contentResolver = context.getContentResolver();
+
+            List<Ablum> ablumList = new ArrayList<>();
+            Cursor result = contentResolver.query(uri, null, null, null, MediaStore.Audio.Albums.DEFAULT_SORT_ORDER);
+
+            if (result == null) {
+                return ablumList;
+            }
+
+            while (result.moveToNext()) {
+                Ablum ablum = new Ablum();
+
+                ablum.setAlbum(result.getString(result.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM)));
+                ablum.setAlbum_art(result.getString(result.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM_ART)));
+                ablum.setAlbum_key(result.getString(result.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM_KEY)));
+                ablum.setArtist(result.getString(result.getColumnIndexOrThrow(MediaStore.Audio.Albums.ARTIST)));
+                // ablum.setArtist_id(result.getString(result.getColumnIndexOrThrow(MediaStore.Audio.Albums.Art)));
+                // ablum.setArtist_key(result.getString(result.getColumnIndexOrThrow(MediaStore.Audio.Albums.ART)));
+                ablum.setMaxyear(result.getString(result.getColumnIndexOrThrow(MediaStore.Audio.Albums.LAST_YEAR)));
+                ablum.setMinyear(result.getString(result.getColumnIndexOrThrow(MediaStore.Audio.Albums.FIRST_YEAR)));
+                ablum.set_id(result.getString(result.getColumnIndexOrThrow(MediaStore.Audio.Albums._ID)));
+                ablum.setNumsongs(result.getString(result.getColumnIndexOrThrow(MediaStore.Audio.Albums.NUMBER_OF_SONGS)));
+
+                ablumList.add(ablum);
+            }
+
+            return ablumList;
+        }
+
         /**
          * 执行手机中所有歌曲的扫描。
          */
@@ -424,18 +468,18 @@ public class Utils {
                             isPodcast != 1 &&
                             path.toLowerCase().endsWith("mp3")) { // 是音乐
 
-                        String title = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE));
-                        String titleKey = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE_KEY));
-                        String name = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME)); // 歌曲名
-                        String album = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM)); // 专辑
-                        long albumId = c.getLong(c.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID)); // 专辑 ID
-                        String albumKey = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_KEY));
-                        String artist = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST)); // 作者
-                        long artistId = c.getLong(c.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST_ID)); // 艺术家ID
+                        String title     = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE));        // 标题
+                        String titleKey  = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE_KEY));
+                        String name      = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME)); // 歌曲名
+                        String album     = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM));        // 专辑
+                        long   albumId   = c.getLong(  c.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID));     // 专辑 ID
+                        String albumKey  = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_KEY));
+                        String artist    = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST));       // 作者
+                        long   artistId  = c.getLong(  c.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST_ID));    // 艺术家ID
                         String artistKey = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST_KEY));
-                        long size = c.getLong(c.getColumnIndexOrThrow(MediaStore.Audio.Media.SIZE));// 大小
-                        int duration = c.getInt(c.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION));// 时长
-                        // int id        = c.getInt(   c.getColumnIndexOrThrow(MediaStore.Audio.Media._ID         ));// 歌曲的id
+                        long   size      = c.getLong(  c.getColumnIndexOrThrow(MediaStore.Audio.Media.SIZE));         // 大小
+                        int    duration  = c.getInt(   c.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION));     // 时长
+                        // int id        = c.getInt(   c.getColumnIndexOrThrow(MediaStore.Audio.Media._ID         )); // 歌曲的id
 
                         Music music = new Music();
 

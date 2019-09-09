@@ -166,13 +166,14 @@ public class CoreServices2 extends MediaBrowserServiceCompat {
         this.mediaPlayer.prepareAsync();
     }
 
-    // 暂停，是否修改通知。
+    // 暂停
     public void pause() {
         pause(true);
     }
-    // 暂停
+    // 暂停，是否修改通知。
     public void pause(boolean sendNotify) {
         if (currentMusic == null) return;
+        if (!isPlaying) return;
 
         this.mediaPlayer.pause();
         dispachStateChange(PlaybackStateCompat.STATE_PAUSED);
