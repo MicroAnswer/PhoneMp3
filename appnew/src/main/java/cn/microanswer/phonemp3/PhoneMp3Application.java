@@ -2,10 +2,12 @@ package cn.microanswer.phonemp3;
 
 import android.app.Application;
 
+import com.bumptech.glide.request.RequestOptions;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
 import java.io.File;
 
+import answer.android.phonemp3.R;
 import cn.microanswer.phonemp3.util.CrashHandler;
 import cn.microanswer.phonemp3.util.Logger;
 import cn.microanswer.phonemp3.util.SettingHolder;
@@ -14,6 +16,12 @@ import cn.microanswer.phonemp3.util.Utils;
 
 public class PhoneMp3Application extends Application {
     public static File DIR_LOG = null; // 日志文件所在的文件夹
+
+    // Glide 图片加载选项。
+    public static final RequestOptions REQUEST_OPTIONS = new RequestOptions()
+            .placeholder(R.drawable.icon_ablem)
+            .error(R.drawable.icon_ablem)
+            .fitCenter();
 
     @Override
     public void onCreate() {

@@ -23,6 +23,7 @@
             android:name="cn.microanswer.phonemp3.ui.activitys.PhoneMp3Activity"
             android:screenOrientation="portrait"
             android:launchMode="singleInstance"
+            android:hardwareAccelerated="true"
             android:label="${APP_NAME}">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

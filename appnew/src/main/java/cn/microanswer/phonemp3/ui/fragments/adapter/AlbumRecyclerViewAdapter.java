@@ -12,12 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.transition.DrawableCrossFadeTransition;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.transform.TransformerFactory;
+
 import answer.android.phonemp3.R;
 import cn.microanswer.phonemp3.entity.Ablum;
+
+import static cn.microanswer.phonemp3.PhoneMp3Application.REQUEST_OPTIONS;
 
 public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecyclerViewAdapter.AlbumItemHolder>{
     private LayoutInflater layoutInflater;
@@ -65,6 +70,7 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
         return ablumList.size();
     }
 
+
     public static class AlbumItemHolder extends RecyclerView.ViewHolder {
         private Ablum ablum;
         private int position;
@@ -86,8 +92,7 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
 
             image.setImageResource(R.drawable.icon_ablem);
             if (!TextUtils.isEmpty(this.ablum.getAlbum_art())) {
-                RequestOptions opt = new RequestOptions().error(R.drawable.icon_ablem);
-                Glide.with(itemView).load(this.ablum.getAlbum_art()).apply(opt).into(image);
+                Glide.with(itemView).load(this.ablum.getAlbum_art()).apply(REQUEST_OPTIONS).into(image);
             }
             titleView.setText(this.ablum.getAlbum());
             descView.setText(this.ablum.getArtist());

@@ -44,12 +44,6 @@ public class Main_AllMusic_M_Answer extends BaseAnswer<Main_AllMucis_M_Page> imp
     @Override
     public void onPageCreated(Bundle savedInstanceState, Bundle arguments) {
         getPhoneMp3Activity().addMyMediaController(this);
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         if (musics == null) {
             loadAllMusics();
         } else {
@@ -71,7 +65,7 @@ public class Main_AllMusic_M_Answer extends BaseAnswer<Main_AllMucis_M_Page> imp
     private void loadAllMusics() {
         // 先检查是否有权限
         int i = ContextCompat.checkSelfPermission(getPhoneMp3Activity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (i == PackageManager.PERMISSION_DENIED) {
+        if (i != PackageManager.PERMISSION_GRANTED) {
             // 没有权限
             // 请求权限
             String[] per;
