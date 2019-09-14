@@ -7,7 +7,11 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
@@ -35,6 +39,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -279,15 +284,16 @@ public class Utils {
 
     public static class APP {
         // 更新android手机，某文件被删除了、
-        public static void updateFileFromDatabase(Context context,String filepath){
-            String where=MediaStore.Audio.Media.DATA+" = ?";
-            int i=  context.getContentResolver().delete(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,where,new String[]{filepath});
-            if(i>0){
-                Log.e("Utils.APP","媒体库更新成功！");
+        public static void updateFileFromDatabase(Context context, String filepath) {
+            String where = MediaStore.Audio.Media.DATA + " = ?";
+            int i = context.getContentResolver().delete(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, where, new String[]{filepath});
+            if (i > 0) {
+                Log.e("Utils.APP", "媒体库更新成功！");
             } else {
-                Log.e("Utils.APP","媒体库更新失败！");
+                Log.e("Utils.APP", "媒体库更新失败！");
             }
         }
+
         /**
          * 获取应用版本号
          *
@@ -616,18 +622,18 @@ public class Utils {
         public static String file2String(File txtFile) {
             Reader reader = null;
             String resulr = "";
-            try{
+            try {
                 InputStreamReader rad = new InputStreamReader(new FileInputStream(txtFile), "UTF-8");
                 reader = new BufferedReader(rad);
 
                 char[] d = new char[512];
                 int size = 0;
                 StringBuilder sbu = new StringBuilder();
-                while ((size = reader.read(d))!=-1) {
+                while ((size = reader.read(d)) != -1) {
                     sbu.append(d, 0, size);
                 }
                 resulr = sbu.toString();
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             } finally {
                 try {
