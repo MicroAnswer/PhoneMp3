@@ -58,6 +58,7 @@ public class Main_AllMusicFragment extends BaseFragment<Main_AllMusicLogic> impl
 
         tabLayout.setupWithViewPager(viewPager, true);
         // AllMusicViewPageAdapter adapter;
+        viewPager.setOffscreenPageLimit(4);
         if (viewPager.getAdapter() == null) {
             viewPager.setAdapter(new AllMusicViewPageAdapter(getChildFragmentManager()));
         }

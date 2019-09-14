@@ -44,8 +44,6 @@ public class AllMusicViewPageAdapter extends FragmentPagerAdapter {
             bf = new Main_AllMusic_D_Fragment();
         }
         fragmentMap.put(3, bf);
-
-
     }
 
     @Override

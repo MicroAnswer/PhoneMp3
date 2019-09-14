@@ -18,11 +18,9 @@ import answer.android.phonemp3.R;
 import cn.microanswer.phonemp3.entity.Music;
 import cn.microanswer.phonemp3.util.Task;
 
+import static cn.microanswer.phonemp3.PhoneMp3Application.REQUEST_OPTIONS;
+
 public class MusicItemRecyclerViewAdapter extends RecyclerView.Adapter<MusicItemRecyclerViewAdapter.MusicItem> {
-    public static final RequestOptions REQUEST_OPTIONS = new RequestOptions()
-            .placeholder(R.drawable.icon_ablem)
-            .error(R.drawable.icon_ablem)
-            .fitCenter();
 
     private List<Music> musicList;
     private LayoutInflater layoutInflater;
@@ -31,8 +29,10 @@ public class MusicItemRecyclerViewAdapter extends RecyclerView.Adapter<MusicItem
     }
 
     public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
-        this.notifyDataSetChanged();
+        if (musicList != null && !musicList.equals(this.musicList)) {
+            this.musicList = musicList;
+            this.notifyDataSetChanged();
+        }
     }
 
     public void addMusic(Music music) {

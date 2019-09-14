@@ -2,6 +2,7 @@ package cn.microanswer.phonemp3.ui.fragments;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,10 @@ public class Main_AllMusic_M_Fragment extends BaseFragment<Main_AllMusic_M_Logic
     private MusicListView musicListView;
     private TextView textViewScannHint;
 
+    public Main_AllMusic_M_Fragment () {
+        Log.i("Microanswer", "所有歌曲页面：构造");
+    }
+
     @Override
     Main_AllMusic_M_Logic newLogic() {
         return new Main_AllMusic_M_Answer(this);
@@ -36,6 +41,7 @@ public class Main_AllMusic_M_Fragment extends BaseFragment<Main_AllMusic_M_Logic
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i("Microanswer", "所有歌曲页面：onCreateView");
         return inflater.inflate(R.layout.fragment_main_allmusic_m, container, false);
     }
 
@@ -47,19 +53,10 @@ public class Main_AllMusic_M_Fragment extends BaseFragment<Main_AllMusic_M_Logic
         musicListView.setOnItemClickListener(this);
         textViewScannHint = findViewById(R.id.textViewScanHint);
         findViewById(R.id.buttonScann).setOnClickListener(this);
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getLogic().onResume();
-    }
+        getLogic().onPageCreated(savedInstanceState, getArguments());
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        getLogic().onPageCreated(null, getArguments());
+        Log.i("Microanswer", "所有歌曲页面：onViewCreated");
     }
 
     @Override
